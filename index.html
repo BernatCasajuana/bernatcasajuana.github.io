@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bernat Casajuana</title>
+  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --white:  #fdfcfa;
+      --ink:    #111110;
+      --mid:    #555550;
+      --light:  #aaaaaa;
+      --rule:   #e0dfd8;
+      --accent: #1b5e75;
+      --serif:  'Crimson Pro', 'Times New Roman', Times, serif;
+      --mono:   'JetBrains Mono', monospace;
+    }
+
+    html { font-size: 18px; }
+    body {
+      background: var(--white);
+      color: var(--ink);
+      font-family: var(--serif);
+      line-height: 1.8;
+      min-height: 100vh;
+    }
+    
+    .page {
+  width: 90%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding: 3rem 0 1.5rem;
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .header-layout {
+      display: grid;
+      grid-template-columns: 1fr 170px;
+      gap: 1.4rem;
+      align-items: start;
+    }
+
+    header h1 {
+      font-size: 1.9rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      margin-bottom: 0.3rem;
+    }
+
+    .header-sub {
+      font-size: 0.95rem;
+      color: var(--mid);
+      font-style: italic;
+      margin-bottom: 0.35rem;
+    }
+
+    .header-desc {
+      font-size: 0.85rem;
+      color: var(--mid);
+      margin-bottom: 1rem;
+    }
+
+    .header-links {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.05em;
+      display: flex;
+      gap: 1.4rem;
+      flex-wrap: wrap;
+      color: var(--mid);
+    }
+
+    .header-links a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 1px;
+      transition: border-color 0.15s;
+    }
+
+    .header-links a:hover { border-color: var(--accent); }
+
+    .header-photo {
+      width: 170px;
+      height: 210px;
+      border: 1px solid var(--rule);
+      background: #f7f5ef;
+    }
+
+    /* ── TABS ── */
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .tab-btn {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.9rem 1.4rem;
+      border: none;
+      background: none;
+      cursor: pointer;
+      color: var(--light);
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .tab-btn:hover { color: var(--mid); }
+
+    .tab-btn.active {
+      color: var(--ink);
+      border-bottom-color: var(--ink);
+    }
+
+    /* ── TAB PANELS ── */
+    .tab-panel { display: none; padding: 3rem 0 4rem; }
+    .tab-panel.active { display: block; }
+
+    /* ── CV ── */
+    .cv-section-title {
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--light);
+      margin-bottom: 1.5rem;
+    }
+
+    .cv-divider {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 2rem 0;
+    }
+
+    .cv-entry {
+      display: grid;
+      grid-template-columns: 6.5rem 1fr;
+      gap: 0 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .cv-entry:last-child { margin-bottom: 0; }
+
+    .cv-year {
+      font-family: var(--mono);
+      font-size: 0.62rem;
+      color: var(--light);
+      padding-top: 0.25rem;
+      letter-spacing: 0.03em;
+    }
+
+    .cv-title { font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 0.1rem; }
+    .cv-place { font-size: 0.9rem; font-style: italic; color: var(--mid); margin-bottom: 0.25rem; }
+    .cv-desc  { font-size: 0.88rem; color: var(--mid); }
+
+    /* ── NOTES ── */
+    .note-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--rule);
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .note-item:first-of-type { border-top: 1px solid var(--rule); }
+    .note-item:hover .note-title { color: var(--accent); }
+    .note-title { font-size: 1rem; color: var(--ink); transition: color 0.15s; }
+
+    .note-cat {
+      font-family: var(--mono);
+      font-size: 0.56rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--light);
+      white-space: nowrap;
+    }
+
+    /* ── PROJECTS ── */
+    .proj-item {
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .proj-item:first-of-type { border-top: 1px solid var(--rule); }
+
+    .sim-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .sim-card {
+      border: 1px solid var(--rule);
+      padding: 0.7rem;
+      background: #fbfaf7;
+    }
+
+    .sim-card img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+      background: #f1efe8;
+      border: 1px solid var(--rule);
+      margin-bottom: 0.5rem;
+    }
+
+    .sim-caption {
+      font-family: var(--mono);
+      font-size: 0.56rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    .proj-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .proj-title { font-size: 1rem; font-weight: 600; color: var(--ink); }
+
+    .proj-status {
+      font-family: var(--mono);
+      font-size: 0.56rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--light);
+      white-space: nowrap;
+    }
+
+    .proj-status.active { color: #2a7a2a; }
+    .proj-status.wip    { color: #8a6000; }
+
+    .proj-desc { font-size: 0.9rem; color: var(--mid); margin-bottom: 0.7rem; }
+
+    .proj-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+
+    .proj-tag {
+      font-family: var(--mono);
+      font-size: 0.56rem;
+      letter-spacing: 0.05em;
+      color: var(--mid);
+      background: var(--rule);
+      padding: 1px 6px;
+      border-radius: 2px;
+    }
+
+    .github-link {
+      display: inline-block;
+      margin-top: 0.7rem;
+      font-family: var(--mono);
+      font-size: 0.6rem;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      padding-bottom: 1px;
+      transition: border-color 0.15s;
+    }
+
+    .github-link:hover { border-color: var(--accent); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 1.8rem 0;
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 0.58rem;
+      letter-spacing: 0.05em;
+      color: var(--light);
+      text-transform: uppercase;
+    }
+
+    footer a { color: var(--light); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 520px) {
+      .cv-entry { grid-template-columns: 1fr; gap: 0.15rem; }
+      .tab-btn  { padding: 0.8rem 0.9rem; font-size: 0.55rem; }
+      header h1 { font-size: 1.5rem; }
+      .sim-gallery { grid-template-columns: 1fr; }
+      .header-layout { grid-template-columns: 1fr; }
+      .header-photo { width: 140px; height: 175px; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ╔══════════════════════════════════════════════════════╗
+      ║  HEADER - edit name, subtitle and links              ║
+       ╚══════════════════════════════════════════════════════╝ -->
+  <header>
+    <div class="header-layout">
+      <div>
+        <h1>Bernat Casajuana</h1>
+        <div class="header-sub">Modeling · Analysis · Complex systems · Networks · Nonlinear dynamics</div>
+        <div class="header-desc">I model and analyze complex systems to understand patterns, dynamics, and behavior across real-world networks.</div>
+        <div class="header-links">
+          <span>email: <a href="mailto:casajuana.bernat@gmail.com">casajuana.bernat@gmail.com</a></span>
+          <span>github: <a href="https://github.com/BernatCasajuana" target="_blank">github.com/BernatCasajuana</a></span>
+          <span><a href="cv.pdf">cv.pdf</a></span>
+        </div>
+      </div>
+      <!-- Empty photo slot. Add <img> here when ready. -->
+      <div class="header-photo" aria-label="Profile photo placeholder"></div>
+    </div>
+  </header>
+
+  <!-- TABS -->
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="cv">CV</button>
+    <button class="tab-btn" data-tab="projects">Projects</button>
+    <button class="tab-btn" data-tab="notes">Notes</button>
+  </nav>
+
+
+  <!-- ╔══════════════════════════════════════════════════════╗
+      ║  TAB: CV                                              ║
+      ║  Add one cv-entry per new entry                       ║
+       ╚══════════════════════════════════════════════════════╝ -->
+  <div class="tab-panel active" id="tab-cv">
+    <!-- Intentionally empty for now -->
+
+  </div>
+
+
+  <!-- ╔══════════════════════════════════════════════════════╗
+      ║  TAB: NOTES                                           ║
+      ║  Each note-item links to a notes/topic.html file      ║
+      ║  Copy a line and update href, title and category      ║
+       ╚══════════════════════════════════════════════════════╝ -->
+  <div class="tab-panel" id="tab-notes">
+    <!-- Intentionally empty for now -->
+
+  </div>
+
+
+  <!-- ╔══════════════════════════════════════════════════════╗
+       ║  TAB: PROJECTS                                        ║
+       ║  Each proj-item has a github-link to the repository   ║
+       ║  Status: active (green) / wip (yellow) / none (gray) ║
+       ╚══════════════════════════════════════════════════════╝ -->
+  <div class="tab-panel" id="tab-projects">
+    <!-- Intentionally empty for now -->
+
+  </div>
+
+  <footer>
+    <span>Bernat Casajuana</span>
+    <span>
+      <a href="https://github.com/BernatCasajuana" target="_blank">GitHub</a>
+      &nbsp;·&nbsp;
+      <a href="mailto:casajuana.bernat@gmail.com">casajuana.bernat@gmail.com</a>
+    </span>
+  </footer>
+
+</div>
+
+<script>
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>

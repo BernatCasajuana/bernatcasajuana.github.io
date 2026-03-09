@@ -69,9 +69,7 @@
     }
 
     .header-links {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.05em;
+      font: inherit;
       display: flex;
       gap: 1.4rem;
       flex-wrap: wrap;
@@ -79,6 +77,10 @@
     }
 
     .header-links a {
+      font-family: inherit;
+      font-size: inherit;
+      font-style: inherit;
+      letter-spacing: inherit;
       color: var(--accent);
       text-decoration: none;
       border-bottom: 1px solid transparent;
@@ -285,14 +287,19 @@
       padding: 1.8rem 0;
       display: flex;
       justify-content: space-between;
-      font-family: var(--mono);
-      font-size: 0.58rem;
-      letter-spacing: 0.05em;
+      font: inherit;
       color: var(--light);
-      text-transform: uppercase;
+      text-transform: none;
     }
 
-    footer a { color: var(--light); text-decoration: none; }
+    footer a {
+      font-family: inherit;
+      font-size: inherit;
+      font-style: inherit;
+      letter-spacing: inherit;
+      color: var(--light);
+      text-decoration: none;
+    }
     footer a:hover { color: var(--accent); }
 
     @media (max-width: 520px) {

@@ -3,20 +3,22 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bernat Casajuana Suarez</title>
-  <link href="https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet"/>
+  <title>Bernat Casajuana</title>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --white:  #fdfcfa;
-      --ink:    #111110;
-      --mid:    #555550;
-      --light:  #aaaaaa;
-      --rule:   #e0dfd8;
-      --accent: #1b5e75;
-      --serif:  'Crimson Pro', 'Times New Roman', Times, serif;
-      --mono:   'JetBrains Mono', monospace;
+      --white:  #ffffff;
+      --ink:    #000000;
+      --mid:    #2b2b2b;
+      --light:  #666666;
+      --rule:   rgba(0, 0, 0, 0.24);
+      --accent: #335f7a;
+      --serif:  'STIX Two Text', 'Times New Roman', serif;
+      --ui:     'IBM Plex Sans', 'Segoe UI', sans-serif;
+      --mono:   'IBM Plex Mono', 'SFMono-Regular', Menlo, monospace;
+      --math:   'STIX Two Text', 'Times New Roman', serif;
     }
 
     html { font-size: 18px; }
@@ -24,55 +26,79 @@
       background: var(--white);
       color: var(--ink);
       font-family: var(--serif);
-      line-height: 1.8;
+      line-height: 1.78;
       min-height: 100vh;
+      font-weight: 400;
+      background-image: none;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      font-variant-ligatures: common-ligatures;
     }
     
     .page {
-  width: 90%;
-  max-width: 1100px;
+  width: min(96vw, 1400px);
   margin: 0 auto;
-  padding: 0 2rem;
+  padding: 0 2.5rem;
     }
 
     /* ── HEADER ── */
     header {
-      padding: 3rem 0 1.5rem;
-      border-bottom: 2px solid var(--ink);
+      padding: 2.2rem 0 1rem;
+      border-bottom: 1px solid var(--rule);
     }
 
     .header-layout {
       display: grid;
-      grid-template-columns: 1fr 170px;
-      gap: 1.4rem;
+      grid-template-columns: 1fr 250px;
+      gap: 1.5rem;
       align-items: start;
     }
 
+    .intro-card {
+      padding: 0;
+    }
+
     header h1 {
-      font-size: 1.9rem;
-      font-weight: 600;
-      letter-spacing: 0.01em;
+      font-family: var(--serif);
+      font-size: 2rem;
+      font-weight: 500;
+      letter-spacing: -0.005em;
       margin-bottom: 0.3rem;
     }
 
     .header-sub {
-      font-size: 0.95rem;
+      font-family: var(--ui);
+      font-size: 0.88rem;
       color: var(--mid);
       font-style: italic;
-      margin-bottom: 0.35rem;
+      margin-bottom: 0.25rem;
+      letter-spacing: 0.005em;
+    }
+
+    .header-sub .kw {
+      color: var(--mid);
+      font-weight: 500;
+    }
+
+    .header-sub .sep {
+      color: var(--ink);
+      padding: 0 0.14rem;
+      font-weight: 400;
     }
 
     .header-desc {
-      font-size: 0.85rem;
+      font-family: var(--serif);
+      font-size: 1rem;
       color: var(--mid);
-      margin-bottom: 1rem;
+      margin-bottom: 0.45rem;
+      max-width: 110ch;
     }
 
     .header-links {
-      font: inherit;
-      font-size: 0.8rem;
+      font-family: var(--serif);
+      font-size: 0.84rem;
       display: flex;
-      gap: 1.4rem;
+      gap: 0.9rem;
       flex-wrap: wrap;
       color: var(--mid);
     }
@@ -85,50 +111,157 @@
       color: var(--accent);
       text-decoration: none;
       border-bottom: 1px solid transparent;
-      padding-bottom: 1px;
-      transition: border-color 0.15s;
+      padding-bottom: 0;
+      transition: color 0.15s, border-color 0.15s;
     }
 
     .header-links a:hover { border-color: var(--accent); }
 
     .header-photo {
-      width: 170px;
-      height: 210px;
-      border: 1px solid var(--rule);
-      background: #f7f5ef;
-    }
-
-    /* ── TABS ── */
-    .tabs {
-      display: flex;
-      border-bottom: 1px solid var(--rule);
-    }
-
-    .tab-btn {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      padding: 0.9rem 1.4rem;
+      width: 250px;
+      height: 165px;
       border: none;
-      background: none;
+      background: #f6f7f9;
+      border-radius: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* ── HUB SWITCHER ── */
+    .hub-switcher {
+      --indicator-left: 0px;
+      --indicator-width: 0px;
+      position: relative;
+      display: flex;
+      gap: 1.35rem;
+      align-items: center;
+      margin-top: 0.8rem;
+      padding: 0 0 0.55rem;
+      border-bottom: 1px solid var(--rule);
+      isolation: isolate;
+    }
+
+    .hub-switcher::before {
+      content: "";
+      position: absolute;
+      bottom: -1px;
+      left: var(--indicator-left);
+      width: var(--indicator-width);
+      height: 2px;
+      background: var(--ink);
+      border-radius: 999px;
+      transition: left 0.24s ease, width 0.24s ease;
+      z-index: 0;
+    }
+
+    .hub-btn {
+      font-family: var(--serif);
+      font-size: 0.92rem;
+      font-weight: 500;
+      letter-spacing: 0;
+      text-transform: none;
+      padding: 0.18rem 0;
+      color: var(--mid);
+      background: transparent;
+      border: none;
+      border-bottom: none;
       cursor: pointer;
-      color: var(--light);
-      border-bottom: 2px solid transparent;
-      margin-bottom: -1px;
-      transition: color 0.15s, border-color 0.15s;
+      transition: color 0.15s;
+      z-index: 1;
     }
 
-    .tab-btn:hover { color: var(--mid); }
-
-    .tab-btn.active {
+    .hub-btn:hover {
       color: var(--ink);
-      border-bottom-color: var(--ink);
     }
 
-    /* ── TAB PANELS ── */
-    .tab-panel { display: none; padding: 3rem 0 4rem; }
-    .tab-panel.active { display: block; }
+    .hub-btn.active {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .hub-stage {
+      padding: 1.9rem 0 4rem;
+      position: relative;
+      min-height: 58vh;
+    }
+
+    .hub-panel {
+      position: absolute;
+      inset: 0;
+      border: none;
+      border-radius: 0;
+      padding: 0.95rem 0 0;
+      background: transparent;
+      opacity: 0;
+      transform: translateY(8px);
+      pointer-events: none;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+
+    .hub-panel.active {
+      opacity: 1;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .empty-slot {
+      border: none;
+      min-height: 8rem;
+      padding: 0;
+      color: var(--light);
+      font-family: var(--serif);
+      font-size: 1rem;
+      font-style: normal;
+      background: transparent;
+      max-width: 92ch;
+    }
+
+    .preview-copy {
+      color: var(--mid);
+      max-width: 84ch;
+      margin-bottom: 0.95rem;
+    }
+
+    .preview-list {
+      list-style: none;
+      display: grid;
+      gap: 0.62rem;
+      color: var(--mid);
+      max-width: 82ch;
+    }
+
+    .preview-list li {
+      position: relative;
+      padding-left: 1.05rem;
+    }
+
+    .preview-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.6em;
+      width: 0.42rem;
+      height: 0.42rem;
+      border-radius: 50%;
+      background: var(--ink);
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 0.7rem;
+    }
+
+    .chip {
+      font-family: var(--ui);
+      font-size: 0.72rem;
+      color: var(--mid);
+      border: 1px solid var(--rule);
+      border-radius: 999px;
+      padding: 0.14rem 0.55rem;
+      background: #ffffff;
+    }
 
     /* ── CV ── */
     .cv-section-title {
@@ -288,8 +421,8 @@
       padding: 1.8rem 0;
       display: flex;
       justify-content: space-between;
-      font: inherit;
-      font-size: 0.8rem;
+      font-family: var(--serif);
+      font-size: 0.9rem;
       color: var(--light);
       text-transform: none;
     }
@@ -306,11 +439,20 @@
 
     @media (max-width: 520px) {
       .cv-entry { grid-template-columns: 1fr; gap: 0.15rem; }
-      .tab-btn  { padding: 0.8rem 0.9rem; font-size: 0.55rem; }
+      .page { padding: 0 1.1rem; }
+      .hub-switcher {
+        gap: 0.75rem;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding-bottom: 0.45rem;
+      }
+      .hub-switcher::before { display: none; }
+      .hub-btn { font-size: 0.85rem; }
       header h1 { font-size: 1.5rem; }
       .sim-gallery { grid-template-columns: 1fr; }
       .header-layout { grid-template-columns: 1fr; }
-      .header-photo { width: 140px; height: 175px; }
+      .header-photo { width: 200px; height: 132px; }
+      .hub-stage { min-height: 48vh; }
     }
   </style>
 </head>
@@ -322,13 +464,13 @@
        ╚══════════════════════════════════════════════════════╝ -->
   <header>
     <div class="header-layout">
-      <div>
-        <h1>Bernat Casajuana Suarez</h1>
-        <div class="header-sub">Modeling · Analysis · Complex systems · Networks · Nonlinear dynamics</div>
+      <div class="intro-card">
+        <h1>Bernat Casajuana</h1>
+        <div class="header-sub"><span class="kw">Modeling</span><span class="sep">·</span><span class="kw">Analysis</span><span class="sep">·</span><span class="kw">Complex systems</span><span class="sep">·</span><span class="kw">Networks</span><span class="sep">·</span><span class="kw">Nonlinear dynamics</span></div>
         <div class="header-desc">I model and analyze complex systems to understand patterns, dynamics, and behavior across real-world networks.</div>
         <div class="header-links">
           <span>email: <a href="mailto:casajuana.bernat@gmail.com">casajuana.bernat@gmail.com</a></span>
-          <span>github: <a href="https://github.com/BernatCasajuana" target="_blank">github.com/BernatCasajuana</a></span>
+          <span>code: <a href="https://github.com/BernatCasajuana" target="_blank">github.com/BernatCasajuana</a></span>
           <span><a href="cv.pdf">cv.pdf</a></span>
         </div>
       </div>
@@ -337,47 +479,73 @@
     </div>
   </header>
 
-  <!-- TABS -->
-  <nav class="tabs">
-    <button class="tab-btn active" data-tab="cv">CV</button>
-    <button class="tab-btn" data-tab="projects">Projects</button>
-    <button class="tab-btn" data-tab="notes">Notes</button>
+  <!-- HUB SWITCHER -->
+  <nav class="hub-switcher" aria-label="Site sections">
+    <button class="hub-btn active" type="button" data-index="0" data-panel="about">About me</button>
+    <button class="hub-btn" type="button" data-index="1" data-panel="research">Research Projects</button>
+    <button class="hub-btn" type="button" data-index="2" data-panel="models">Model Library</button>
+    <button class="hub-btn" type="button" data-index="3" data-panel="notes">Notes</button>
+    <button class="hub-btn" type="button" data-index="4" data-panel="cv">CV</button>
   </nav>
 
+  <main class="hub-stage">
+    <section class="hub-panel active" id="panel-about">
+      <div class="empty-slot">
+        <p class="preview-copy">I am a mathematics student focused on modeling complex systems. My work combines scientific programming, dynamical systems, and data-driven methods to understand how structure and interaction produce emergent behavior.</p>
+        <p class="preview-copy">I am especially interested in the bridge between theory and computation: using simulations to test ideas, then using mathematical analysis to interpret the patterns that appear.</p>
+      </div>
+    </section>
 
-  <!-- ╔══════════════════════════════════════════════════════╗
-      ║  TAB: CV                                              ║
-      ║  Add one cv-entry per new entry                       ║
-       ╚══════════════════════════════════════════════════════╝ -->
-  <div class="tab-panel active" id="tab-cv">
-    <!-- Intentionally empty for now -->
+    <section class="hub-panel" id="panel-research">
+      <div class="empty-slot">
+        <ul class="preview-list">
+          <li>PINN-based parameter inference for nonlinear biological oscillators.</li>
+          <li>Final thesis direction: coupling mechanistic models with neural surrogates.</li>
+          <li>Study of identifiability and robustness under noisy observations.</li>
+        </ul>
+        <div class="chip-row">
+          <span class="chip">in progress</span>
+          <span class="chip">thesis</span>
+          <span class="chip">PINNs</span>
+        </div>
+      </div>
+    </section>
 
-  </div>
+    <section class="hub-panel" id="panel-models">
+      <div class="empty-slot">
+        <ul class="preview-list">
+          <li>Lotka-Volterra dynamics and phase-space sensitivity.</li>
+          <li>Hodgkin-Huxley membrane simulations under varied stimuli.</li>
+          <li>Repressilator oscillations and stability windows.</li>
+          <li>SIR/SIS spread on heterogeneous networks.</li>
+        </ul>
+      </div>
+    </section>
 
+    <section class="hub-panel" id="panel-notes">
+      <div class="empty-slot">
+        <p class="preview-copy">Compact notes on the mathematical tools I use most often: stability analysis, bifurcations, numerical integration, and inverse problems.</p>
+        <ul class="preview-list">
+          <li>Short derivations and theorem summaries.</li>
+          <li>Reading notes from selected papers.</li>
+          <li>Implementation remarks for reproducible experiments.</li>
+        </ul>
+      </div>
+    </section>
 
-  <!-- ╔══════════════════════════════════════════════════════╗
-      ║  TAB: NOTES                                           ║
-      ║  Each note-item links to a notes/topic.html file      ║
-      ║  Copy a line and update href, title and category      ║
-       ╚══════════════════════════════════════════════════════╝ -->
-  <div class="tab-panel" id="tab-notes">
-    <!-- Intentionally empty for now -->
-
-  </div>
-
-
-  <!-- ╔══════════════════════════════════════════════════════╗
-       ║  TAB: PROJECTS                                        ║
-       ║  Each proj-item has a github-link to the repository   ║
-       ║  Status: active (green) / wip (yellow) / none (gray) ║
-       ╚══════════════════════════════════════════════════════╝ -->
-  <div class="tab-panel" id="tab-projects">
-    <!-- Intentionally empty for now -->
-
-  </div>
+    <section class="hub-panel" id="panel-cv">
+      <div class="empty-slot">
+        <ul class="preview-list">
+          <li>Education timeline and current degree track.</li>
+          <li>Technical stack: Python, numerical methods, scientific visualization.</li>
+          <li>Academic interests and current collaboration themes.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <span>Bernat Casajuana Suarez</span>
+    <span>Bernat Casajuana</span>
     <span>
       <a href="https://github.com/BernatCasajuana" target="_blank">GitHub</a>
       &nbsp;·&nbsp;
@@ -388,14 +556,35 @@
 </div>
 
 <script>
-  document.querySelectorAll('.tab-btn').forEach(btn => {
+  const hubSwitcher = document.querySelector('.hub-switcher');
+  const hubButtons = document.querySelectorAll('.hub-btn');
+  const hubPanels = document.querySelectorAll('.hub-panel');
+
+  function updateHubIndicator(activeButton) {
+    if (!hubSwitcher || !activeButton) return;
+    const left = activeButton.offsetLeft;
+    const width = activeButton.offsetWidth;
+    hubSwitcher.style.setProperty('--indicator-left', left + 'px');
+    hubSwitcher.style.setProperty('--indicator-width', width + 'px');
+  }
+
+  hubButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      const target = btn.dataset.panel;
+      hubButtons.forEach((b) => b.classList.remove('active'));
+      hubPanels.forEach((p) => p.classList.remove('active'));
       btn.classList.add('active');
-      document.getElementById('tab-' + btn.dataset.tab).classList.add('active');
+      document.getElementById('panel-' + target).classList.add('active');
+      updateHubIndicator(btn);
     });
   });
+
+  const initiallyActive = document.querySelector('.hub-btn.active');
+  updateHubIndicator(initiallyActive);
+  window.addEventListener('resize', () => {
+    updateHubIndicator(document.querySelector('.hub-btn.active'));
+  });
 </script>
+
 </body>
 </html>

@@ -13,15 +13,16 @@
       --ink:    #000000;
       --mid:    #2b2b2b;
       --light:  #666666;
-      --rule:   rgba(0, 0, 0, 0.24);
+      --rule:   rgba(0, 0, 0, 0.16);
       --accent: #335f7a;
+      --edge-space: 2.2rem;
       --serif:  'STIX Two Text', 'Times New Roman', serif;
       --ui:     'IBM Plex Sans', 'Segoe UI', sans-serif;
       --mono:   'IBM Plex Mono', 'SFMono-Regular', Menlo, monospace;
       --math:   'STIX Two Text', 'Times New Roman', serif;
     }
 
-    html { font-size: 18px; }
+    html { font-size: 16px; }
     body {
       background: var(--white);
       color: var(--ink);
@@ -43,7 +44,7 @@
 
     /* ── HEADER ── */
     header {
-      padding: 2.2rem 0 1rem;
+      padding: var(--edge-space) 0 1rem;
       border-bottom: 1px solid var(--rule);
     }
 
@@ -60,18 +61,18 @@
 
     header h1 {
       font-family: var(--serif);
-      font-size: 2rem;
+      font-size: 1.82rem;
       font-weight: 500;
       letter-spacing: -0.005em;
       margin-bottom: 0.3rem;
     }
 
     .header-sub {
-      font-family: var(--ui);
-      font-size: 0.88rem;
+      font-family: var(--serif);
+      font-size: 0.9rem;
       color: var(--mid);
       font-style: italic;
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.6rem;
       letter-spacing: 0.005em;
     }
 
@@ -90,13 +91,13 @@
       font-family: var(--serif);
       font-size: 1rem;
       color: var(--mid);
-      margin-bottom: 0.45rem;
+      margin-bottom: 0.9rem;
       max-width: 110ch;
     }
 
     .header-links {
       font-family: var(--serif);
-      font-size: 0.84rem;
+      font-size: 1rem;
       display: flex;
       gap: 0.9rem;
       flex-wrap: wrap;
@@ -135,8 +136,8 @@
       display: flex;
       gap: 1.35rem;
       align-items: center;
-      margin-top: 0.8rem;
-      padding: 0 0 0.55rem;
+      margin-top: 0.5rem;
+      padding: 0 0 0.4rem;
       border-bottom: 1px solid var(--rule);
       isolation: isolate;
     }
@@ -156,7 +157,7 @@
 
     .hub-btn {
       font-family: var(--serif);
-      font-size: 0.92rem;
+      font-size: 1rem;
       font-weight: 500;
       letter-spacing: 0;
       text-transform: none;
@@ -180,9 +181,10 @@
     }
 
     .hub-stage {
-      padding: 1.9rem 0 4rem;
+      padding: 1.4rem 0 1.6rem;
       position: relative;
-      min-height: 58vh;
+      min-height: 66vh;
+      margin-bottom: var(--edge-space);
     }
 
     .hub-panel {
@@ -190,12 +192,31 @@
       inset: 0;
       border: none;
       border-radius: 0;
-      padding: 0.95rem 0 0;
+      padding: 1rem 0 0;
       background: transparent;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: thin;
+      scrollbar-color: var(--rule) transparent;
       opacity: 0;
       transform: translateY(8px);
       pointer-events: none;
       transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+
+    .hub-panel::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    .hub-panel::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .hub-panel::-webkit-scrollbar-thumb {
+      background: var(--rule);
+      border-radius: 999px;
+      border: 2px solid transparent;
+      background-clip: padding-box;
     }
 
     .hub-panel.active {
@@ -208,18 +229,32 @@
       border: none;
       min-height: 8rem;
       padding: 0;
+      width: 95%;
+      margin: 0 auto;
+      text-align: justify;
       color: var(--light);
       font-family: var(--serif);
-      font-size: 1rem;
+      font-size: 0.95rem;
       font-style: normal;
       background: transparent;
-      max-width: 92ch;
+      max-width: none;
+    }
+
+    .subsection-title {
+      font-family: var(--serif);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0;
+      color: var(--ink);
+      margin: 1rem 0 0.55rem;
+      text-transform: none;
     }
 
     .preview-copy {
       color: var(--mid);
-      max-width: 84ch;
+      max-width: none;
       margin-bottom: 0.95rem;
+      text-wrap: pretty;
     }
 
     .preview-list {
@@ -227,12 +262,13 @@
       display: grid;
       gap: 0.62rem;
       color: var(--mid);
-      max-width: 82ch;
+      max-width: none;
     }
 
     .preview-list li {
       position: relative;
       padding-left: 1.05rem;
+      text-align: left;
     }
 
     .preview-list li::before {
@@ -255,7 +291,7 @@
 
     .chip {
       font-family: var(--ui);
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       color: var(--mid);
       border: 1px solid var(--rule);
       border-radius: 999px;
@@ -415,29 +451,8 @@
 
     .github-link:hover { border-color: var(--accent); }
 
-    /* ── FOOTER ── */
-    footer {
-      border-top: 1px solid var(--rule);
-      padding: 1.8rem 0;
-      display: flex;
-      justify-content: space-between;
-      font-family: var(--serif);
-      font-size: 0.9rem;
-      color: var(--light);
-      text-transform: none;
-    }
-
-    footer a {
-      font-family: inherit;
-      font-size: inherit;
-      font-style: inherit;
-      letter-spacing: inherit;
-      color: var(--light);
-      text-decoration: none;
-    }
-    footer a:hover { color: var(--accent); }
-
     @media (max-width: 520px) {
+      :root { --edge-space: 1.5rem; }
       .cv-entry { grid-template-columns: 1fr; gap: 0.15rem; }
       .page { padding: 0 1.1rem; }
       .hub-switcher {
@@ -452,7 +467,8 @@
       .sim-gallery { grid-template-columns: 1fr; }
       .header-layout { grid-template-columns: 1fr; }
       .header-photo { width: 200px; height: 132px; }
-      .hub-stage { min-height: 48vh; }
+      .hub-stage { min-height: 56vh; padding: 1rem 0 1.2rem; margin-bottom: var(--edge-space); }
+      .empty-slot { width: 100%; }
     }
   </style>
 </head>
@@ -471,7 +487,7 @@
         <div class="header-links">
           <span>email: <a href="mailto:casajuana.bernat@gmail.com">casajuana.bernat@gmail.com</a></span>
           <span>code: <a href="https://github.com/BernatCasajuana" target="_blank">github.com/BernatCasajuana</a></span>
-          <span><a href="cv.pdf">cv.pdf</a></span>
+          <span>full cv: <a href="cv.pdf">cv.pdf</a></span>
         </div>
       </div>
       <!-- Empty photo slot. Add <img> here when ready. -->
@@ -493,32 +509,69 @@
       <div class="empty-slot">
         <p class="preview-copy">I am a mathematics student focused on modeling complex systems. My work combines scientific programming, dynamical systems, and data-driven methods to understand how structure and interaction produce emergent behavior.</p>
         <p class="preview-copy">I am especially interested in the bridge between theory and computation: using simulations to test ideas, then using mathematical analysis to interpret the patterns that appear.</p>
+        <p class="preview-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at orci at velit aliquet tempor. Morbi mattis, tortor ut luctus cursus, metus orci congue eros, at varius lorem velit at justo. Phasellus et magna vel justo facilisis iaculis. Aenean feugiat eros non lorem pellentesque, non posuere massa porttitor.</p>
+        <p class="preview-copy">Sed dignissim, nisl ut malesuada sodales, nibh nunc pretium erat, vitae accumsan mi nibh a nisl. Curabitur eu orci porta, tincidunt quam nec, bibendum ipsum. In congue augue non massa volutpat, a feugiat nibh vulputate. Fusce bibendum rutrum sapien, id mattis magna congue non.</p>
+        <p class="preview-copy">Praesent luctus, augue in facilisis ultrices, neque lectus tincidunt neque, at pretium metus mauris ac neque. Etiam non lectus sed justo venenatis tincidunt. In pharetra imperdiet dolor, ac interdum justo ultricies a. Cras porttitor orci in nibh faucibus, non fermentum neque aliquet.</p>
+        <p class="preview-copy">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Suspendisse in sem sed neque convallis interdum. Nulla porttitor sem sed ex vulputate, vel tincidunt arcu rutrum. Integer dignissim massa sed dui feugiat, sed facilisis augue congue.</p>
+        <p class="preview-copy">Fusce porttitor sem non lectus gravida, sed ultricies magna luctus. Sed congue, augue at volutpat tempus, justo orci finibus nulla, ut dapibus mi lorem ac lectus. Donec et varius nisl. Integer ultricies nisl quis posuere congue. Duis ac vestibulum justo.</p>
+        <p class="preview-copy">Morbi sed consequat neque. Curabitur eu turpis at sem ultricies pulvinar. Nunc fermentum rutrum consequat. Pellentesque non purus et turpis condimentum tempus vitae at odio. Nulla facilisi. Cras tincidunt lorem in eros tincidunt, vel tincidunt odio fringilla.</p>
+        <p class="preview-copy">Ut mattis magna eu quam vulputate, id posuere ligula laoreet. Phasellus at ligula lacus. Etiam commodo maximus nunc, at aliquet felis varius et. Integer ac lorem quis arcu varius aliquet. Maecenas tristique augue eros, vitae elementum erat varius sed.</p>
       </div>
     </section>
 
     <section class="hub-panel" id="panel-research">
       <div class="empty-slot">
+        <p class="subsection-title">Current Focus</p>
         <ul class="preview-list">
           <li>PINN-based parameter inference for nonlinear biological oscillators.</li>
           <li>Final thesis direction: coupling mechanistic models with neural surrogates.</li>
           <li>Study of identifiability and robustness under noisy observations.</li>
+          <li>Lorem ipsum project stream on sparse data reconstruction and uncertainty-aware predictions.</li>
+          <li>Experimental pipeline for benchmarking surrogate models against mechanistic baselines.</li>
+          <li>Cross-validation strategy for time-dependent systems under perturbations and noise.</li>
+          <li>Comparative studies of optimization behavior across stiff and non-stiff model families.</li>
+          <li>Documentation and reproducibility audits for all computational experiments.</li>
+          <li>Pipeline standardization for experiment metadata, versioning, and traceability.</li>
+          <li>Sensitivity studies for regularization choices in constrained model training.</li>
+          <li>Benchmark curation with interpretable diagnostics and error decomposition.</li>
         </ul>
         <div class="chip-row">
           <span class="chip">in progress</span>
           <span class="chip">thesis</span>
           <span class="chip">PINNs</span>
+          <span class="chip">nonlinear systems</span>
+          <span class="chip">inverse problems</span>
         </div>
+        <p class="subsection-title">Methodology</p>
+        <p class="preview-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vestibulum augue vitae ligula volutpat, sit amet feugiat lorem volutpat. Vivamus auctor congue erat, quis ultrices est finibus sed. Praesent tristique lectus sed quam porta, ut egestas lorem tincidunt.</p>
+        <p class="preview-copy">Aliquam erat volutpat. Nam ullamcorper tincidunt ligula, nec convallis velit rhoncus et. Sed elementum nisi vel est tristique, non porttitor est varius. Integer et erat a augue ultricies dignissim. Curabitur suscipit nisi eget velit pellentesque, id tincidunt sapien hendrerit.</p>
+        <p class="preview-copy">Aenean id lacinia mi, non ultrices libero. Donec commodo eleifend elit non interdum. Curabitur molestie dignissim tellus, et bibendum mi aliquam a. Integer scelerisque est a velit volutpat, non dictum ipsum posuere.</p>
+        <p class="preview-copy">Donec tincidunt diam ac turpis dignissim gravida. Quisque semper, mi in feugiat gravida, nulla risus porta massa, non interdum orci velit non nunc. Sed varius iaculis neque, nec facilisis mauris auctor ut.</p>
       </div>
     </section>
 
     <section class="hub-panel" id="panel-models">
       <div class="empty-slot">
+        <p class="subsection-title">Biological And Ecological Models</p>
         <ul class="preview-list">
           <li>Lotka-Volterra dynamics and phase-space sensitivity.</li>
           <li>Hodgkin-Huxley membrane simulations under varied stimuli.</li>
           <li>Repressilator oscillations and stability windows.</li>
           <li>SIR/SIS spread on heterogeneous networks.</li>
+          <li>Kuramoto synchronization with coupling heterogeneity and phase frustration.</li>
+          <li>Reaction-diffusion pattern formation on discretized spatial domains.</li>
+          <li>Bifurcation tracking in low-dimensional autonomous systems.</li>
+          <li>Delay differential oscillators with parameter continuation experiments.</li>
+          <li>Energy-based stability checks for conservative and dissipative regimes.</li>
+          <li>Comparisons of explicit and implicit integrators under stiffness constraints.</li>
+          <li>Graph-theoretic effects on diffusion and contagion speed.</li>
         </ul>
+        <p class="subsection-title">Numerical Notes</p>
+        <p class="preview-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a aliquam lectus. Vestibulum laoreet tristique mi, id posuere est auctor vel. Integer semper, est nec rhoncus dictum, sapien risus pulvinar lectus, vitae egestas ex neque non neque.</p>
+        <p class="preview-copy">Nunc tempor massa vitae mi tempor, non commodo mi convallis. Aenean convallis dui ut lorem placerat, sit amet pulvinar est euismod. Nulla facilisi. Aliquam rutrum sem at sollicitudin tincidunt.</p>
+        <p class="preview-copy">Mauris vulputate lacus sed lorem aliquet, at tempor lorem consequat. Cras posuere gravida urna, vel bibendum arcu placerat non. Proin hendrerit sapien sed sem posuere, ac luctus velit interdum. Integer faucibus feugiat lacus, non tristique velit faucibus non.</p>
+        <p class="preview-copy">Suspendisse non ligula id purus dictum aliquet. Donec faucibus massa a est eleifend, vitae interdum nisi finibus. Integer sit amet elit porttitor, volutpat diam sed, lacinia augue. Nunc interdum urna neque, vitae dignissim mi pretium non.</p>
+        <p class="preview-copy">Etiam volutpat mauris eget sodales rhoncus. Curabitur luctus tortor at orci vulputate, eu facilisis ex pellentesque. Aenean aliquet mauris sed turpis aliquet, at congue tortor feugiat.</p>
       </div>
     </section>
 
@@ -529,29 +582,42 @@
           <li>Short derivations and theorem summaries.</li>
           <li>Reading notes from selected papers.</li>
           <li>Implementation remarks for reproducible experiments.</li>
+          <li>Symbol conventions, assumptions, and normalization choices by topic.</li>
+          <li>Checklist for numerical stability and convergence diagnostics.</li>
+          <li>Reference formulas for Jacobians, sensitivities, and linearization methods.</li>
+          <li>Annotated examples of scaling and non-dimensionalization choices.</li>
+          <li>Template workflows for deriving reduced-order approximations.</li>
+          <li>Comparison notes for deterministic vs stochastic formulations.</li>
         </ul>
+        <p class="preview-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Integer dictum ex ac mattis interdum. In non nibh eu mauris pharetra pellentesque. Pellentesque eu pulvinar est. Nunc luctus, justo non congue suscipit, mauris lorem auctor ligula, vel tincidunt leo sem in nunc.</p>
+        <p class="preview-copy">Donec at mauris nec ex porta malesuada. Vivamus at elementum justo. Curabitur at ligula mi. Sed auctor iaculis ante, at feugiat tortor posuere vitae.</p>
+        <p class="preview-copy">Morbi condimentum erat at nibh malesuada, et consequat ligula dapibus. Integer in dictum sem. Nulla luctus, mauris sed blandit luctus, lorem quam tincidunt orci, sit amet vulputate ligula nisl ut odio. Etiam dapibus, nunc et porttitor tempor, est est gravida turpis, vitae ultrices justo tortor a lectus.</p>
+        <p class="preview-copy">Cras posuere, tortor a feugiat sagittis, magna justo sodales nisl, sit amet dictum risus sem in diam. Quisque non lacus laoreet, hendrerit est non, pellentesque nulla. Curabitur suscipit luctus semper.</p>
+        <p class="preview-copy">Integer sodales feugiat elit, sed dictum mi. Vivamus posuere est a tellus tincidunt, in dictum ex posuere. Suspendisse potenti. Mauris placerat non velit nec efficitur.</p>
       </div>
     </section>
 
     <section class="hub-panel" id="panel-cv">
       <div class="empty-slot">
+        <p class="preview-copy">Overview: mathematical training focused on complex systems, scientific modeling, and computational methods, with growing research experience in nonlinear dynamics and data-informed differential equation models.</p>
         <ul class="preview-list">
           <li>Education timeline and current degree track.</li>
           <li>Technical stack: Python, numerical methods, scientific visualization.</li>
           <li>Academic interests and current collaboration themes.</li>
+          <li>Coursework emphasis: differential equations, probability, numerical analysis, and optimization.</li>
+          <li>Tools: reproducible notebooks, version control workflows, and experiment tracking.</li>
+          <li>Communication: technical writing, presentations, and peer collaboration.</li>
+          <li>Interdisciplinary focus across applied mathematics and computational science.</li>
+          <li>Progressive involvement in modeling-oriented project leadership.</li>
+          <li>Documentation standards for transparent, reproducible research artifacts.</li>
         </ul>
+        <p class="preview-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula erat ac ex tincidunt, vel aliquet orci viverra. Integer efficitur urna id sapien sollicitudin, sit amet consequat diam eleifend. Quisque auctor dapibus vulputate.</p>
+        <p class="preview-copy">Nam blandit magna sit amet sem ullamcorper, id imperdiet mi dictum. Sed quis ultrices augue. Duis et libero nec ipsum varius varius. Mauris elementum, lorem in vulputate posuere, purus quam tincidunt eros, id pellentesque elit odio ut massa.</p>
+        <p class="preview-copy">Sed eleifend, augue ac cursus iaculis, velit orci iaculis enim, sed laoreet ex est nec risus. Phasellus id justo consequat, malesuada mi in, aliquet lorem. Integer vel tempus augue, quis dictum massa.</p>
+        <p class="preview-copy">Mauris in enim quis est dictum vulputate. Pellentesque ultrices, metus non facilisis lacinia, mi metus posuere justo, vitae pellentesque metus orci id lectus. Integer sed tempor diam.</p>
       </div>
     </section>
   </main>
-
-  <footer>
-    <span>Bernat Casajuana</span>
-    <span>
-      <a href="https://github.com/BernatCasajuana" target="_blank">GitHub</a>
-      &nbsp;·&nbsp;
-      <a href="mailto:casajuana.bernat@gmail.com">casajuana.bernat@gmail.com</a>
-    </span>
-  </footer>
 
 </div>
 

@@ -45,13 +45,13 @@
     /* ── HEADER ── */
     header {
       padding: var(--edge-space) 0 1rem;
-      border-bottom: 1px solid var(--rule);
+      border-bottom: none;
     }
 
     .header-layout {
       display: grid;
-      grid-template-columns: 1fr 250px;
-      gap: 1.5rem;
+      grid-template-columns: 1fr;
+      gap: 0;
       align-items: start;
     }
 
@@ -67,31 +67,12 @@
       margin-bottom: 0.3rem;
     }
 
-    .header-sub {
-      font-family: var(--serif);
-      font-size: 0.9rem;
-      color: var(--mid);
-      font-style: italic;
-      margin-bottom: 0.6rem;
-      letter-spacing: 0.005em;
-    }
-
-    .header-sub .kw {
-      color: var(--mid);
-      font-weight: 500;
-    }
-
-    .header-sub .sep {
-      color: var(--ink);
-      padding: 0 0.14rem;
-      font-weight: 400;
-    }
-
     .header-desc {
       font-family: var(--serif);
       font-size: 1rem;
       color: var(--mid);
-      margin-bottom: 0.9rem;
+      font-style: italic;
+      margin-bottom: 0.4rem;
       max-width: 110ch;
     }
 
@@ -118,14 +99,29 @@
 
     .header-links a:hover { border-color: var(--accent); }
 
-    .header-photo {
+    .about-intro {
+      display: grid;
+      grid-template-columns: 1fr 250px;
+      gap: 1.2rem;
+      align-items: start;
+      margin-bottom: 0.6rem;
+    }
+
+    .about-photo {
       width: 250px;
       height: 165px;
       border: none;
       background: #f6f7f9;
-      border-radius: 0;
       overflow: hidden;
-      position: relative;
+      position: sticky;
+      top: 0.35rem;
+    }
+
+    .about-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     /* ── HUB SWITCHER ── */
@@ -136,8 +132,9 @@
       display: flex;
       gap: 1.35rem;
       align-items: center;
-      margin-top: 0.5rem;
-      padding: 0 0 0.4rem;
+      margin-top: 0.35rem;
+      padding: 0.36rem 0;
+      border-top: 1px solid var(--rule);
       border-bottom: 1px solid var(--rule);
       isolation: isolate;
     }
@@ -181,7 +178,7 @@
     }
 
     .hub-stage {
-      padding: 1.4rem 0 1.6rem;
+      padding: 1rem 0 1.6rem;
       position: relative;
       min-height: 66vh;
       margin-bottom: var(--edge-space);
@@ -192,7 +189,7 @@
       inset: 0;
       border: none;
       border-radius: 0;
-      padding: 1rem 0 0;
+      padding: 0.75rem 0 0;
       background: transparent;
       overflow-y: auto;
       overflow-x: hidden;
@@ -238,6 +235,10 @@
       font-style: normal;
       background: transparent;
       max-width: none;
+    }
+
+    .empty-slot > :first-child {
+      margin-top: 1rem;
     }
 
     .subsection-title {
@@ -466,8 +467,9 @@
       header h1 { font-size: 1.5rem; }
       .sim-gallery { grid-template-columns: 1fr; }
       .header-layout { grid-template-columns: 1fr; }
-      .header-photo { width: 200px; height: 132px; }
-      .hub-stage { min-height: 56vh; padding: 1rem 0 1.2rem; margin-bottom: var(--edge-space); }
+      .about-intro { grid-template-columns: 1fr; gap: 0.8rem; }
+      .about-photo { width: 200px; height: 132px; position: static; }
+      .hub-stage { min-height: 56vh; padding: 0.8rem 0 1.2rem; margin-bottom: var(--edge-space); }
       .empty-slot { width: 100%; }
     }
   </style>
@@ -482,7 +484,6 @@
     <div class="header-layout">
       <div class="intro-card">
         <h1>Bernat Casajuana</h1>
-        <div class="header-sub"><span class="kw">Modeling</span><span class="sep">·</span><span class="kw">Analysis</span><span class="sep">·</span><span class="kw">Complex systems</span><span class="sep">·</span><span class="kw">Networks</span><span class="sep">·</span><span class="kw">Nonlinear dynamics</span></div>
         <div class="header-desc">I model and analyze complex systems to understand patterns, dynamics, and behavior across real-world networks.</div>
         <div class="header-links">
           <span>email: <a href="mailto:casajuana.bernat@gmail.com">casajuana.bernat@gmail.com</a></span>
@@ -490,8 +491,6 @@
           <span>full cv: <a href="cv.pdf">cv.pdf</a></span>
         </div>
       </div>
-      <!-- Empty photo slot. Add <img> here when ready. -->
-      <div class="header-photo" aria-label="Profile photo placeholder"></div>
     </div>
   </header>
 
@@ -507,7 +506,11 @@
   <main class="hub-stage">
     <section class="hub-panel active" id="panel-about">
       <div class="empty-slot">
-        <p class="preview-copy">I am a mathematics student focused on modeling complex systems. My work combines scientific programming, dynamical systems, and data-driven methods to understand how structure and interaction produce emergent behavior.</p>
+        <div class="about-intro">
+          <p class="preview-copy">I am a mathematics student focused on modeling complex systems. My work combines scientific programming, dynamical systems, and data-driven methods to understand how structure and interaction produce emergent behavior.</p>
+          <!-- Add image source when ready. -->
+          <div class="about-photo" aria-label="Profile photo placeholder"></div>
+        </div>
         <p class="preview-copy">I am especially interested in the bridge between theory and computation: using simulations to test ideas, then using mathematical analysis to interpret the patterns that appear.</p>
         <p class="preview-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at orci at velit aliquet tempor. Morbi mattis, tortor ut luctus cursus, metus orci congue eros, at varius lorem velit at justo. Phasellus et magna vel justo facilisis iaculis. Aenean feugiat eros non lorem pellentesque, non posuere massa porttitor.</p>
         <p class="preview-copy">Sed dignissim, nisl ut malesuada sodales, nibh nunc pretium erat, vitae accumsan mi nibh a nisl. Curabitur eu orci porta, tincidunt quam nec, bibendum ipsum. In congue augue non massa volutpat, a feugiat nibh vulputate. Fusce bibendum rutrum sapien, id mattis magna congue non.</p>

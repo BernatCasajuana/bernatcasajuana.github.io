@@ -73,7 +73,7 @@
       color: var(--mid);
       font-style: italic;
       margin-bottom: 0.4rem;
-      max-width: 110ch;
+      max-width: none;
     }
 
     .header-links {
@@ -283,6 +283,53 @@
       background: var(--ink);
     }
 
+    .cv-subline {
+      display: block;
+      margin-top: 0.12rem;
+      color: var(--ink);
+      font: inherit;
+      font-weight: 700;
+    }
+
+    .cv-meta {
+      display: block;
+      margin-top: 0.1rem;
+      color: var(--ink);
+      font: inherit;
+    }
+
+    #panel-cv .subsection-title {
+      font-weight: 700;
+      font-style: italic;
+      color: var(--ink);
+      text-align: center;
+      text-decoration: underline;
+      text-decoration-color: var(--ink);
+      text-underline-offset: 0.09em;
+      margin: 2.8rem 0 1rem;
+    }
+
+    #panel-cv .empty-slot > .subsection-title:first-child {
+      margin-top: 1rem;
+    }
+
+    #panel-cv .empty-slot {
+      text-align: center;
+    }
+
+    #panel-cv .preview-list li {
+      padding-left: 0;
+      text-align: center;
+    }
+
+    #panel-cv .preview-list {
+      gap: 1.15rem;
+    }
+
+    #panel-cv .preview-list li::before {
+      content: none;
+    }
+
     .chip-row {
       display: flex;
       flex-wrap: wrap;
@@ -484,7 +531,7 @@
     <div class="header-layout">
       <div class="intro-card">
         <h1>Bernat Casajuana</h1>
-        <div class="header-desc">I model and analyze complex systems to understand patterns, dynamics, and behavior across real-world networks.</div>
+           <div class="header-desc">I model and analyze complex dynamical systems and networks, applying AI and computational methods to understand real-world phenomena.</div>
         <div class="header-links">
           <span>email: <a href="mailto:casajuana.bernat@gmail.com">casajuana.bernat@gmail.com</a></span>
           <span>code: <a href="https://github.com/BernatCasajuana" target="_blank">github.com/BernatCasajuana</a></span>
@@ -497,127 +544,114 @@
   <!-- HUB SWITCHER -->
   <nav class="hub-switcher" aria-label="Site sections">
     <button class="hub-btn active" type="button" data-index="0" data-panel="about">About me</button>
-    <button class="hub-btn" type="button" data-index="1" data-panel="research">Research Projects</button>
+    <button class="hub-btn" type="button" data-index="1" data-panel="research">Selected Projects</button>
     <button class="hub-btn" type="button" data-index="2" data-panel="models">Model Library</button>
     <button class="hub-btn" type="button" data-index="3" data-panel="notes">Math</button>
-    <button class="hub-btn" type="button" data-index="4" data-panel="cv">CV</button>
+    <button class="hub-btn" type="button" data-index="4" data-panel="cv">Curriculum Vitae</button>
   </nav>
 
   <main class="hub-stage">
     <section class="hub-panel active" id="panel-about">
       <div class="empty-slot">
         <div class="about-intro">
-          <p class="preview-copy">I am a mathematics student focused on modeling complex systems. My work combines scientific programming, dynamical systems, and data-driven methods to understand how structure and interaction produce emergent behavior.</p>
+          <p class="preview-copy">I am a mathematics student focused on modeling complex systems. This section is now ready for final content.</p>
           <!-- Add image source when ready. -->
           <div class="about-photo" aria-label="Profile photo placeholder"></div>
         </div>
-        <p class="preview-copy">I am especially interested in the bridge between theory and computation: using simulations to test ideas, then using mathematical analysis to interpret the patterns that appear.</p>
-        <p class="preview-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at orci at velit aliquet tempor. Morbi mattis, tortor ut luctus cursus, metus orci congue eros, at varius lorem velit at justo. Phasellus et magna vel justo facilisis iaculis. Aenean feugiat eros non lorem pellentesque, non posuere massa porttitor.</p>
-        <p class="preview-copy">Sed dignissim, nisl ut malesuada sodales, nibh nunc pretium erat, vitae accumsan mi nibh a nisl. Curabitur eu orci porta, tincidunt quam nec, bibendum ipsum. In congue augue non massa volutpat, a feugiat nibh vulputate. Fusce bibendum rutrum sapien, id mattis magna congue non.</p>
-        <p class="preview-copy">Praesent luctus, augue in facilisis ultrices, neque lectus tincidunt neque, at pretium metus mauris ac neque. Etiam non lectus sed justo venenatis tincidunt. In pharetra imperdiet dolor, ac interdum justo ultricies a. Cras porttitor orci in nibh faucibus, non fermentum neque aliquet.</p>
-        <p class="preview-copy">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Suspendisse in sem sed neque convallis interdum. Nulla porttitor sem sed ex vulputate, vel tincidunt arcu rutrum. Integer dignissim massa sed dui feugiat, sed facilisis augue congue.</p>
-        <p class="preview-copy">Fusce porttitor sem non lectus gravida, sed ultricies magna luctus. Sed congue, augue at volutpat tempus, justo orci finibus nulla, ut dapibus mi lorem ac lectus. Donec et varius nisl. Integer ultricies nisl quis posuere congue. Duis ac vestibulum justo.</p>
-        <p class="preview-copy">Morbi sed consequat neque. Curabitur eu turpis at sem ultricies pulvinar. Nunc fermentum rutrum consequat. Pellentesque non purus et turpis condimentum tempus vitae at odio. Nulla facilisi. Cras tincidunt lorem in eros tincidunt, vel tincidunt odio fringilla.</p>
-        <p class="preview-copy">Ut mattis magna eu quam vulputate, id posuere ligula laoreet. Phasellus at ligula lacus. Etiam commodo maximus nunc, at aliquet felis varius et. Integer ac lorem quis arcu varius aliquet. Maecenas tristique augue eros, vitae elementum erat varius sed.</p>
+        <p class="preview-copy">Today I start writing this page with real information and current work.</p>
       </div>
     </section>
 
     <section class="hub-panel" id="panel-research">
       <div class="empty-slot">
-        <p class="subsection-title">Current Focus</p>
-        <ul class="preview-list">
-          <li>PINN-based parameter inference for nonlinear biological oscillators.</li>
-          <li>Final thesis direction: coupling mechanistic models with neural surrogates.</li>
-          <li>Study of identifiability and robustness under noisy observations.</li>
-          <li>Lorem ipsum project stream on sparse data reconstruction and uncertainty-aware predictions.</li>
-          <li>Experimental pipeline for benchmarking surrogate models against mechanistic baselines.</li>
-          <li>Cross-validation strategy for time-dependent systems under perturbations and noise.</li>
-          <li>Comparative studies of optimization behavior across stiff and non-stiff model families.</li>
-          <li>Documentation and reproducibility audits for all computational experiments.</li>
-          <li>Pipeline standardization for experiment metadata, versioning, and traceability.</li>
-          <li>Sensitivity studies for regularization choices in constrained model training.</li>
-          <li>Benchmark curation with interpretable diagnostics and error decomposition.</li>
-        </ul>
-        <div class="chip-row">
-          <span class="chip">in progress</span>
-          <span class="chip">thesis</span>
-          <span class="chip">PINNs</span>
-          <span class="chip">nonlinear systems</span>
-          <span class="chip">inverse problems</span>
-        </div>
-        <p class="subsection-title">Methodology</p>
-        <p class="preview-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis vestibulum augue vitae ligula volutpat, sit amet feugiat lorem volutpat. Vivamus auctor congue erat, quis ultrices est finibus sed. Praesent tristique lectus sed quam porta, ut egestas lorem tincidunt.</p>
-        <p class="preview-copy">Aliquam erat volutpat. Nam ullamcorper tincidunt ligula, nec convallis velit rhoncus et. Sed elementum nisi vel est tristique, non porttitor est varius. Integer et erat a augue ultricies dignissim. Curabitur suscipit nisi eget velit pellentesque, id tincidunt sapien hendrerit.</p>
-        <p class="preview-copy">Aenean id lacinia mi, non ultrices libero. Donec commodo eleifend elit non interdum. Curabitur molestie dignissim tellus, et bibendum mi aliquam a. Integer scelerisque est a velit volutpat, non dictum ipsum posuere.</p>
-        <p class="preview-copy">Donec tincidunt diam ac turpis dignissim gravida. Quisque semper, mi in feugiat gravida, nulla risus porta massa, non interdum orci velit non nunc. Sed varius iaculis neque, nec facilisis mauris auctor ut.</p>
+        <p class="preview-copy">This section presents selected projects in a clear and concise format.</p>
+        <p class="preview-copy">I will add current goals, methods, and results as they are finalized.</p>
       </div>
     </section>
 
     <section class="hub-panel" id="panel-models">
       <div class="empty-slot">
-        <p class="subsection-title">Biological And Ecological Models</p>
-        <ul class="preview-list">
-          <li>Lotka-Volterra dynamics and phase-space sensitivity.</li>
-          <li>Hodgkin-Huxley membrane simulations under varied stimuli.</li>
-          <li>Repressilator oscillations and stability windows.</li>
-          <li>SIR/SIS spread on heterogeneous networks.</li>
-          <li>Kuramoto synchronization with coupling heterogeneity and phase frustration.</li>
-          <li>Reaction-diffusion pattern formation on discretized spatial domains.</li>
-          <li>Bifurcation tracking in low-dimensional autonomous systems.</li>
-          <li>Delay differential oscillators with parameter continuation experiments.</li>
-          <li>Energy-based stability checks for conservative and dissipative regimes.</li>
-          <li>Comparisons of explicit and implicit integrators under stiffness constraints.</li>
-          <li>Graph-theoretic effects on diffusion and contagion speed.</li>
-        </ul>
-        <p class="subsection-title">Numerical Notes</p>
-        <p class="preview-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas a aliquam lectus. Vestibulum laoreet tristique mi, id posuere est auctor vel. Integer semper, est nec rhoncus dictum, sapien risus pulvinar lectus, vitae egestas ex neque non neque.</p>
-        <p class="preview-copy">Nunc tempor massa vitae mi tempor, non commodo mi convallis. Aenean convallis dui ut lorem placerat, sit amet pulvinar est euismod. Nulla facilisi. Aliquam rutrum sem at sollicitudin tincidunt.</p>
-        <p class="preview-copy">Mauris vulputate lacus sed lorem aliquet, at tempor lorem consequat. Cras posuere gravida urna, vel bibendum arcu placerat non. Proin hendrerit sapien sed sem posuere, ac luctus velit interdum. Integer faucibus feugiat lacus, non tristique velit faucibus non.</p>
-        <p class="preview-copy">Suspendisse non ligula id purus dictum aliquet. Donec faucibus massa a est eleifend, vitae interdum nisi finibus. Integer sit amet elit porttitor, volutpat diam sed, lacinia augue. Nunc interdum urna neque, vitae dignissim mi pretium non.</p>
-        <p class="preview-copy">Etiam volutpat mauris eget sodales rhoncus. Curabitur luctus tortor at orci vulputate, eu facilisis ex pellentesque. Aenean aliquet mauris sed turpis aliquet, at congue tortor feugiat.</p>
+        <p class="preview-copy">This section will contain the model library and implementation notes.</p>
+        <p class="preview-copy">Each entry will summarize the model idea, equations, and computational setup.</p>
       </div>
     </section>
 
     <section class="hub-panel" id="panel-notes">
       <div class="empty-slot">
-        <p class="preview-copy">Compact notes on the mathematical tools I use most often: stability analysis, bifurcations, numerical integration, and inverse problems.</p>
-        <ul class="preview-list">
-          <li>Short derivations and theorem summaries.</li>
-          <li>Reading notes from selected papers.</li>
-          <li>Implementation remarks for reproducible experiments.</li>
-          <li>Symbol conventions, assumptions, and normalization choices by topic.</li>
-          <li>Checklist for numerical stability and convergence diagnostics.</li>
-          <li>Reference formulas for Jacobians, sensitivities, and linearization methods.</li>
-          <li>Annotated examples of scaling and non-dimensionalization choices.</li>
-          <li>Template workflows for deriving reduced-order approximations.</li>
-          <li>Comparison notes for deterministic vs stochastic formulations.</li>
-        </ul>
-        <p class="preview-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Integer dictum ex ac mattis interdum. In non nibh eu mauris pharetra pellentesque. Pellentesque eu pulvinar est. Nunc luctus, justo non congue suscipit, mauris lorem auctor ligula, vel tincidunt leo sem in nunc.</p>
-        <p class="preview-copy">Donec at mauris nec ex porta malesuada. Vivamus at elementum justo. Curabitur at ligula mi. Sed auctor iaculis ante, at feugiat tortor posuere vitae.</p>
-        <p class="preview-copy">Morbi condimentum erat at nibh malesuada, et consequat ligula dapibus. Integer in dictum sem. Nulla luctus, mauris sed blandit luctus, lorem quam tincidunt orci, sit amet vulputate ligula nisl ut odio. Etiam dapibus, nunc et porttitor tempor, est est gravida turpis, vitae ultrices justo tortor a lectus.</p>
-        <p class="preview-copy">Cras posuere, tortor a feugiat sagittis, magna justo sodales nisl, sit amet dictum risus sem in diam. Quisque non lacus laoreet, hendrerit est non, pellentesque nulla. Curabitur suscipit luctus semper.</p>
-        <p class="preview-copy">Integer sodales feugiat elit, sed dictum mi. Vivamus posuere est a tellus tincidunt, in dictum ex posuere. Suspendisse potenti. Mauris placerat non velit nec efficitur.</p>
+        <p class="preview-copy">This section will gather concise mathematical notes and derivations.</p>
+        <p class="preview-copy">I will keep definitions, results, and references organized by topic.</p>
       </div>
     </section>
 
     <section class="hub-panel" id="panel-cv">
       <div class="empty-slot">
-        <p class="preview-copy">Overview: mathematical training focused on complex systems, scientific modeling, and computational methods, with growing research experience in nonlinear dynamics and data-informed differential equation models.</p>
+        <p class="subsection-title">Education</p>
         <ul class="preview-list">
-          <li>Education timeline and current degree track.</li>
-          <li>Technical stack: Python, numerical methods, scientific visualization.</li>
-          <li>Academic interests and current collaboration themes.</li>
-          <li>Coursework emphasis: differential equations, probability, numerical analysis, and optimization.</li>
-          <li>Tools: reproducible notebooks, version control workflows, and experiment tracking.</li>
-          <li>Communication: technical writing, presentations, and peer collaboration.</li>
-          <li>Interdisciplinary focus across applied mathematics and computational science.</li>
-          <li>Progressive involvement in modeling-oriented project leadership.</li>
-          <li>Documentation standards for transparent, reproducible research artifacts.</li>
+          <li>
+            Bachelor's Degree in Biomedicine | 2022 - Present
+            <span class="cv-subline">University of Vic - Central University of Catalonia.</span>
+            <span class="cv-meta">Currently in fourth year.</span>
+          </li>
+          <li>
+            Erasmus Exchange Program | 2025 - 2026
+            <span class="cv-subline">Università degli Studi di Milano.</span>
+          </li>
+          <li>
+            Bachelor's Degree in Biochemistry | 2021 - 2022
+            <span class="cv-subline">Autonomous University of Barcelona.</span>
+            <span class="cv-meta">60 ECTS credits completed.</span>
+          </li>
+          <li>
+            Scientific General Certificate of Education | 2019 - 2021
+            <span class="cv-subline">Quercus High School.</span>
+            <span class="cv-meta">Final grade: 9.19 / 10.</span>
+          </li>
         </ul>
-        <p class="preview-copy">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vehicula erat ac ex tincidunt, vel aliquet orci viverra. Integer efficitur urna id sapien sollicitudin, sit amet consequat diam eleifend. Quisque auctor dapibus vulputate.</p>
-        <p class="preview-copy">Nam blandit magna sit amet sem ullamcorper, id imperdiet mi dictum. Sed quis ultrices augue. Duis et libero nec ipsum varius varius. Mauris elementum, lorem in vulputate posuere, purus quam tincidunt eros, id pellentesque elit odio ut massa.</p>
-        <p class="preview-copy">Sed eleifend, augue ac cursus iaculis, velit orci iaculis enim, sed laoreet ex est nec risus. Phasellus id justo consequat, malesuada mi in, aliquet lorem. Integer vel tempus augue, quis dictum massa.</p>
-        <p class="preview-copy">Mauris in enim quis est dictum vulputate. Pellentesque ultrices, metus non facilisis lacinia, mi metus posuere justo, vitae pellentesque metus orci id lectus. Integer sed tempor diam.</p>
+
+        <p class="subsection-title">Research Experience</p>
+        <ul class="preview-list">
+          <li>
+            Research Internship | March 2025 - July 2025
+            <span class="cv-subline">CBBL (Bi2 research group, UVic-UCC).</span>
+            <span class="cv-meta">Focus: ODE modeling with numerical simulations and neural networks (PINNs), plus bioinformatics data analysis.</span>
+          </li>
+        </ul>
+
+        <p class="subsection-title">Work Experience</p>
+        <ul class="preview-list">
+          <li>
+            Mathematics Private Tutor | 2024 - 2025
+          </li>
+          <li>
+            Waiter | Summer 2024
+            <span class="cv-subline">Hotel - Restaurant L'AVET.</span>
+          </li>
+          <li>
+            Laboratory Assistant | Summer 2023
+            <span class="cv-subline">Avinent Implant System.</span>
+          </li>
+        </ul>
+
+        <p class="subsection-title">Technical Skills</p>
+        <ul class="preview-list">
+          <li>Programming languages: Python, R, Bash.</li>
+          <li>Methods: mathematical modeling, numerical simulations, applied neural networks, bioinformatics data analysis.</li>
+          <li>Tools: NumPy, SciPy, pandas, Matplotlib, DeepXDE, DESeq2, Galaxy, Git, LaTeX.</li>
+        </ul>
+
+        <p class="subsection-title">Transferable Skills</p>
+        <ul class="preview-list">
+          <li>Problem solving in multidisciplinary technical contexts.</li>
+          <li>Analytical communication of quantitative results.</li>
+          <li>Reproducible workflows, documentation, and collaboration.</li>
+        </ul>
+
+        <p class="subsection-title">Languages</p>
+        <ul class="preview-list">
+          <li>Catalan and Spanish (native).</li>
+          <li>Fluent in English (B2 certified).</li>
+          <li>Understanding of Italian.</li>
+        </ul>
       </div>
     </section>
   </main>

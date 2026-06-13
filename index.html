@@ -4,117 +4,183 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bernat Casajuana</title>
-  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=STIX+Two+Text:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
-      --white:  #ffffff;
-      --ink:    #000000;
-      --mid:    #2b2b2b;
-      --light:  #666666;
-      --rule:   rgba(0, 0, 0, 0.16);
-      --accent: #335f7a;
-      --edge-space: 2.2rem;
-      --serif:  'STIX Two Text', 'Times New Roman', serif;
-      --ui:     'IBM Plex Sans', 'Segoe UI', sans-serif;
-      --mono:   'IBM Plex Mono', 'SFMono-Regular', Menlo, monospace;
-      --math:   'STIX Two Text', 'Times New Roman', serif;
+      --white:     #ffffff;
+      --ink:       #111111;
+      --mid:       #2e2e2e;
+      --light:     #777777;
+      --rule:      rgba(0, 0, 0, 0.22);
+      --accent:    #0563C1;
+      --serif:     'Times New Roman', Times, serif;
+      --ui:        'IBM Plex Sans', 'Segoe UI', sans-serif;
+      --mono:      'IBM Plex Mono', 'SFMono-Regular', Menlo, monospace;
+      --sidebar-w: 415px;
     }
 
     html { font-size: 16px; }
+
     body {
       background: var(--white);
       color: var(--ink);
       font-family: var(--serif);
-      line-height: 1.78;
-      min-height: 100vh;
+      font-size: 1.05rem;
+      line-height: 1.9;
       font-weight: 400;
-      background-image: none;
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
       font-variant-ligatures: common-ligatures;
     }
-    
+
+    /* ── LAYOUT ── */
     .page {
-  width: min(96vw, 1400px);
-  margin: 0 auto;
-  padding: 0 2.5rem;
-    }
-
-    /* ── HEADER ── */
-    header {
-      padding: var(--edge-space) 0 1rem;
-      border-bottom: none;
-    }
-
-    .header-layout {
       display: grid;
-      grid-template-columns: 1fr;
-      gap: 0;
-      align-items: start;
+      grid-template-columns: var(--sidebar-w) 1fr;
+      min-height: 100vh;
+      width: 100%;
     }
 
-    .intro-card {
-      padding: 0;
-    }
-
-    header h1 {
-      font-family: var(--serif);
-      font-size: 1.82rem;
-      font-weight: 500;
-      letter-spacing: -0.005em;
-      margin-bottom: 0.3rem;
-    }
-
-    .header-desc {
-      font-family: var(--serif);
-      font-size: 1rem;
-      color: var(--mid);
-      font-style: italic;
-      margin-bottom: 0.4rem;
-      max-width: none;
-    }
-
-    .header-links {
-      font-family: var(--serif);
-      font-size: 1rem;
+    /* ── SIDEBAR (right) ── */
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      scrollbar-width: none;
       display: flex;
-      gap: 0.9rem;
-      flex-wrap: wrap;
-      color: var(--mid);
+      flex-direction: column;
+      padding: 3.8rem 2.5rem 3.8rem 3rem;
     }
 
-    .header-links a {
-      font-family: inherit;
-      font-size: inherit;
-      font-style: inherit;
-      letter-spacing: inherit;
+    .sidebar::after {
+      content: '';
+      position: fixed;
+      left: var(--sidebar-w);
+      top: 1rem;
+      bottom: 1rem;
+      width: 1px;
+      background: var(--rule);
+      pointer-events: none;
+    }
+
+    .sidebar::-webkit-scrollbar { display: none; }
+
+    .sidebar-name {
+      margin-bottom: 1.8rem;
+    }
+
+    .sidebar-name h1 {
+      font-family: 'EB Garamond', serif;
+      font-size: 1.7rem;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+      margin-bottom: 0.65rem;
+    }
+
+    .sidebar-desc {
+      font-family: var(--serif);
+      font-size: 1.05rem;
+      color: var(--ink);
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    .sidebar-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.32rem;
+      padding-top: 1.4rem;
+      margin-bottom: 2.8rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .sidebar-links span {
+      font-family: var(--serif);
+      font-size: 1rem;
+      color: var(--ink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .sidebar-links a {
+      font-family: var(--serif);
+      font-size: 1rem;
       color: var(--accent);
       text-decoration: none;
       border-bottom: 1px solid transparent;
-      padding-bottom: 0;
+      transition: border-color 0.15s;
+    }
+
+    .sidebar-links a:hover { border-bottom-color: var(--accent); }
+
+    /* ── NAV (vertical) ── */
+    .hub-switcher {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .hub-btn {
+      font-family: var(--serif);
+      font-size: 1.08rem;
+      font-weight: 400;
+      text-align: left;
+      padding: 0.38rem 0.5rem 0.38rem 0.9rem;
+      color: var(--light);
+      background: transparent;
+      border: none;
+      border-left: 1.5px solid transparent;
+      cursor: pointer;
       transition: color 0.15s, border-color 0.15s;
     }
 
-    .header-links a:hover { border-color: var(--accent); }
+    .hub-btn:hover { color: var(--mid); }
 
+    .hub-btn.active {
+      color: var(--ink);
+      border-left-color: var(--ink);
+      font-weight: 500;
+    }
+
+    /* ── CONTENT ── */
+    .hub-stage {
+      padding: 3.8rem 5.5rem 6rem 5rem;
+    }
+
+    /* ── PANELS ── */
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0);   }
+    }
+
+    .hub-panel { display: none; }
+
+    .hub-panel.active {
+      display: block;
+      animation: fadeSlideIn 0.22s ease both;
+    }
+
+    /* ── ABOUT ── */
     .about-intro {
       display: grid;
-      grid-template-columns: 1fr 250px;
-      gap: 1.2rem;
+      grid-template-columns: 1fr 195px;
+      gap: 3rem;
       align-items: start;
-      margin-bottom: 0.6rem;
+      margin-bottom: 1.8rem;
     }
 
     .about-photo {
-      width: 250px;
-      height: 165px;
-      border: none;
-      background: #f6f7f9;
+      width: 340px;
+      height: 226px;
+      background: #eeedea;
       overflow: hidden;
-      position: sticky;
-      top: 0.35rem;
+      margin: 4rem auto 0;
+      display: block;
     }
 
     .about-photo img {
@@ -124,284 +190,111 @@
       display: block;
     }
 
-    /* ── HUB SWITCHER ── */
-    .hub-switcher {
-      --indicator-left: 0px;
-      --indicator-width: 0px;
-      position: relative;
-      display: flex;
-      gap: 1.35rem;
-      align-items: center;
-      margin-top: 0.35rem;
-      padding: 0.36rem 0;
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-      isolation: isolate;
-    }
-
-    .hub-switcher::before {
-      content: "";
-      position: absolute;
-      bottom: -1px;
-      left: var(--indicator-left);
-      width: var(--indicator-width);
-      height: 2px;
-      background: var(--ink);
-      border-radius: 999px;
-      transition: left 0.24s ease, width 0.24s ease;
-      z-index: 0;
-    }
-
-    .hub-btn {
+    /* ── TYPOGRAPHY ── */
+    .preview-copy {
       font-family: var(--serif);
-      font-size: 1rem;
-      font-weight: 500;
-      letter-spacing: 0;
-      text-transform: none;
-      padding: 0.18rem 0;
+      font-size: 1.05rem;
       color: var(--mid);
-      background: transparent;
-      border: none;
-      border-bottom: none;
-      cursor: pointer;
-      transition: color 0.15s;
-      z-index: 1;
-    }
-
-    .hub-btn:hover {
-      color: var(--ink);
-    }
-
-    .hub-btn.active {
-      color: var(--ink);
-      font-weight: 600;
-    }
-
-    .hub-stage {
-      padding: 1rem 0 1.6rem;
-      position: relative;
-      min-height: 66vh;
-      margin-bottom: var(--edge-space);
-    }
-
-    .hub-panel {
-      position: absolute;
-      inset: 0;
-      border: none;
-      border-radius: 0;
-      padding: 0.75rem 0 0;
-      background: transparent;
-      overflow-y: auto;
-      overflow-x: hidden;
-      scrollbar-width: thin;
-      scrollbar-color: var(--rule) transparent;
-      opacity: 0;
-      transform: translateY(8px);
-      pointer-events: none;
-      transition: opacity 0.22s ease, transform 0.22s ease;
-    }
-
-    .hub-panel::-webkit-scrollbar {
-      width: 10px;
-    }
-
-    .hub-panel::-webkit-scrollbar-track {
-      background: transparent;
-    }
-
-    .hub-panel::-webkit-scrollbar-thumb {
-      background: var(--rule);
-      border-radius: 999px;
-      border: 2px solid transparent;
-      background-clip: padding-box;
-    }
-
-    .hub-panel.active {
-      opacity: 1;
-      transform: translateY(0);
-      pointer-events: auto;
-    }
-
-    .empty-slot {
-      border: none;
-      min-height: 8rem;
-      padding: 0;
-      width: 95%;
-      margin: 0 auto;
+      margin-bottom: 1.55rem;
       text-align: justify;
-      color: var(--light);
-      font-family: var(--serif);
-      font-size: 0.95rem;
-      font-style: normal;
-      background: transparent;
-      max-width: none;
+      line-height: 1.9;
     }
 
-    .empty-slot > :first-child {
-      margin-top: 1rem;
+    .preview-copy a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.15s;
     }
+
+    .preview-copy a:hover { border-bottom-color: var(--accent); }
 
     .subsection-title {
       font-family: var(--serif);
       font-size: 0.95rem;
       font-weight: 600;
-      letter-spacing: 0;
       color: var(--ink);
-      margin: 1rem 0 0.55rem;
-      text-transform: none;
-    }
-
-    .preview-copy {
-      color: var(--mid);
-      max-width: none;
-      margin-bottom: 0.95rem;
-      text-wrap: pretty;
+      margin: 2.4rem 0 0.9rem;
     }
 
     .preview-list {
       list-style: none;
       display: grid;
-      gap: 0.62rem;
+      gap: 0.75rem;
       color: var(--mid);
-      max-width: none;
     }
 
     .preview-list li {
       position: relative;
-      padding-left: 1.05rem;
-      text-align: left;
+      padding-left: 1rem;
+      font-size: 1rem;
+      line-height: 1.75;
     }
 
     .preview-list li::before {
       content: "";
       position: absolute;
       left: 0;
-      top: 0.6em;
-      width: 0.42rem;
-      height: 0.42rem;
+      top: 0.65em;
+      width: 0.32rem;
+      height: 0.32rem;
       border-radius: 50%;
-      background: var(--ink);
+      background: var(--light);
     }
 
+    /* ── CV ── */
     .cv-subline {
       display: block;
       margin-top: 0.12rem;
-      color: var(--ink);
       font: inherit;
-      font-weight: 700;
+      font-weight: 600;
     }
 
     .cv-subline a {
       color: inherit;
       text-decoration: none;
-      font: inherit;
-      font-weight: inherit;
     }
 
-    .cv-subline a:hover {
-      text-decoration: underline;
-    }
+    .cv-subline a:hover { text-decoration: underline; }
 
     .cv-meta {
       display: block;
       margin-top: 0.1rem;
-      color: var(--ink);
-      font: inherit;
+      font-family: var(--serif);
+      font-size: 0.92rem;
+      font-weight: 400;
+      color: var(--light);
+      line-height: 1.65;
     }
 
     #panel-cv .subsection-title {
-      font-weight: 700;
       font-style: italic;
-      color: var(--ink);
       text-align: center;
       text-decoration: underline;
       text-decoration-color: var(--ink);
-      text-underline-offset: 0.09em;
-      margin: 2.8rem 0 1rem;
+      text-underline-offset: 0.1em;
+      margin: 3.2rem 0 1.4rem;
     }
 
-    #panel-cv .empty-slot > .subsection-title:first-child {
-      margin-top: 1rem;
-    }
+    #panel-cv { text-align: center; }
 
-    #panel-cv .empty-slot {
-      text-align: center;
-    }
-
-    #panel-cv .preview-list li {
-      padding-left: 0;
-      text-align: center;
-    }
+    #panel-cv > .subsection-title:first-child { margin-top: 0.5rem; }
 
     #panel-cv .preview-list {
-      gap: 1.15rem;
+      gap: 1.6rem;
+      text-align: center;
     }
 
-    #panel-cv .preview-list li::before {
-      content: none;
-    }
+    #panel-cv .preview-list li { padding-left: 0; }
+    #panel-cv .preview-list li::before { content: none; }
 
-    .chip-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.45rem;
-      margin-top: 0.7rem;
-    }
-
-    .chip {
-      font-family: var(--ui);
-      font-size: 0.68rem;
-      color: var(--mid);
-      border: 1px solid var(--rule);
-      border-radius: 999px;
-      padding: 0.14rem 0.55rem;
-      background: #ffffff;
-    }
-
-    /* ── CV ── */
-    .cv-section-title {
-      font-family: var(--mono);
-      font-size: 0.6rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--light);
-      margin-bottom: 1.5rem;
-    }
-
-    .cv-divider {
-      border: none;
-      border-top: 1px solid var(--rule);
-      margin: 2rem 0;
-    }
-
-    .cv-entry {
-      display: grid;
-      grid-template-columns: 6.5rem 1fr;
-      gap: 0 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .cv-entry:last-child { margin-bottom: 0; }
-
-    .cv-year {
-      font-family: var(--mono);
-      font-size: 0.62rem;
-      color: var(--light);
-      padding-top: 0.25rem;
-      letter-spacing: 0.03em;
-    }
-
-    .cv-title { font-size: 1rem; font-weight: 600; color: var(--ink); margin-bottom: 0.1rem; }
-    .cv-place { font-size: 0.9rem; font-style: italic; color: var(--mid); margin-bottom: 0.25rem; }
-    .cv-desc  { font-size: 0.88rem; color: var(--mid); }
-
-    /* ── NOTES ── */
+    /* ── NOTES / PROJ ── */
     .note-item {
       display: grid;
       grid-template-columns: 1fr auto;
       align-items: baseline;
       gap: 1rem;
-      padding: 0.85rem 0;
+      padding: 0.9rem 0;
       border-bottom: 1px solid var(--rule);
       text-decoration: none;
       color: inherit;
@@ -420,51 +313,19 @@
       white-space: nowrap;
     }
 
-    /* ── PROJECTS ── */
     .proj-item {
-      padding: 1.4rem 0;
+      padding: 1.5rem 0;
       border-bottom: 1px solid var(--rule);
     }
 
     .proj-item:first-of-type { border-top: 1px solid var(--rule); }
-
-    .sim-gallery {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
-      margin-bottom: 1.6rem;
-    }
-
-    .sim-card {
-      border: 1px solid var(--rule);
-      padding: 0.7rem;
-      background: #fbfaf7;
-    }
-
-    .sim-card img {
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
-      display: block;
-      background: #f1efe8;
-      border: 1px solid var(--rule);
-      margin-bottom: 0.5rem;
-    }
-
-    .sim-caption {
-      font-family: var(--mono);
-      font-size: 0.56rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--mid);
-    }
 
     .proj-header {
       display: flex;
       justify-content: space-between;
       align-items: baseline;
       gap: 1rem;
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.45rem;
     }
 
     .proj-title { font-size: 1rem; font-weight: 600; color: var(--ink); }
@@ -481,7 +342,7 @@
     .proj-status.active { color: #2a7a2a; }
     .proj-status.wip    { color: #8a6000; }
 
-    .proj-desc { font-size: 0.9rem; color: var(--mid); margin-bottom: 0.7rem; }
+    .proj-desc { font-size: 0.95rem; color: var(--mid); margin-bottom: 0.7rem; }
 
     .proj-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
@@ -490,7 +351,7 @@
       font-size: 0.56rem;
       letter-spacing: 0.05em;
       color: var(--mid);
-      background: var(--rule);
+      background: rgba(0,0,0,0.06);
       padding: 1px 6px;
       border-radius: 2px;
     }
@@ -510,188 +371,235 @@
 
     .github-link:hover { border-color: var(--accent); }
 
-    @media (max-width: 520px) {
-      :root { --edge-space: 1.5rem; }
-      .cv-entry { grid-template-columns: 1fr; gap: 0.15rem; }
-      .page { padding: 0 1.1rem; }
+    /* ── SIM GALLERY ── */
+    .sim-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+      margin-bottom: 1.6rem;
+    }
+
+    .sim-card {
+      border: 1px solid var(--rule);
+      padding: 0.7rem;
+      background: #fafaf8;
+    }
+
+    .sim-card img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+      background: #f0efe8;
+      border: 1px solid var(--rule);
+      margin-bottom: 0.5rem;
+    }
+
+    .sim-caption {
+      font-family: var(--mono);
+      font-size: 0.56rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 700px) {
+      .page {
+        display: block;
+      }
+
+      .sidebar {
+        position: static;
+        height: auto;
+        padding: 1.8rem 1.5rem 0;
+        border-left: none;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .sidebar-name h1 { font-size: 1.25rem; }
+
+      .sidebar-links {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 0.4rem 1.1rem;
+        margin-bottom: 0.8rem;
+      }
+
       .hub-switcher {
-        gap: 0.75rem;
+        flex-direction: row;
+        gap: 1rem;
         overflow-x: auto;
         white-space: nowrap;
-        padding-bottom: 0.45rem;
+        padding: 0.8rem 0;
+        border-top: 1px solid var(--rule);
+        scrollbar-width: none;
       }
-      .hub-switcher::before { display: none; }
-      .hub-btn { font-size: 0.85rem; }
-      header h1 { font-size: 1.5rem; }
+
+      .hub-btn {
+        border-left: none;
+        border-bottom: 1.5px solid transparent;
+        padding: 0.2rem 0;
+        font-size: 0.84rem;
+      }
+
+      .hub-btn.active {
+        border-bottom-color: var(--ink);
+        border-left-color: transparent;
+      }
+
+      .hub-stage {
+        padding: 2.2rem 1.5rem 3.5rem;
+        max-width: none;
+      }
+
+      .about-intro {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+
+      .about-photo { width: 160px; height: 107px; }
+
       .sim-gallery { grid-template-columns: 1fr; }
-      .header-layout { grid-template-columns: 1fr; }
-      .about-intro { grid-template-columns: 1fr; gap: 0.8rem; }
-      .about-photo { width: 200px; height: 132px; position: static; }
-      .hub-stage { min-height: 56vh; padding: 0.8rem 0 1.2rem; margin-bottom: var(--edge-space); }
-      .empty-slot { width: 100%; }
     }
   </style>
 </head>
 <body>
+
 <div class="page">
 
-  <!-- ╔══════════════════════════════════════════════════════╗
-      ║  HEADER - edit name, subtitle and links              ║
-       ╚══════════════════════════════════════════════════════╝ -->
-  <header>
-    <div class="header-layout">
-      <div class="intro-card">
-        <h1>Bernat Casajuana</h1>
-           <div class="header-desc">I study complex dynamical systems and networks, combining mechanistic modeling and scientific machine learning for inference, simulation, and prediction.</div>
-        <div class="header-links">
-          <span>email: <a href="mailto:casajuana.bernat@gmail.com">casajuana.bernat@gmail.com</a></span>
-          <span>code: <a href="https://github.com/BernatCasajuana" target="_blank">github.com/BernatCasajuana</a></span>
-          <span>full CV: <a href="cv.pdf" target="_blank" rel="noopener">cv.pdf</a></span>
-        </div>
-      </div>
+  <!-- ── SIDEBAR (left) ── -->
+  <aside class="sidebar">
+    <div class="sidebar-name">
+      <h1>Bernat Casajuana Suarez</h1>
+      <p class="sidebar-desc">Applied mathematics and scientific machine learning for biological systems.</p>
     </div>
-  </header>
+    <div class="sidebar-links">
+      <span>Email: <a href="mailto:casajuana.bernat@gmail.com">casajuana.bernat@gmail.com</a></span>
+      <span>LinkedIn: <a href="https://www.linkedin.com/in/bernat-casajuana-suarez-0938643a5/" target="_blank">Bernat Casajuana Suarez</a></span>
+      <span>Code: <a href="https://github.com/BernatCasajuana" target="_blank">github.com/BernatCasajuana</a></span>
+      <span>Full CV: <a href="cv.pdf" target="_blank" rel="noopener">cv.pdf</a></span>
+    </div>
+    <nav class="hub-switcher" aria-label="Site sections">
+      <button class="hub-btn active" type="button" data-panel="about">About me</button>
+      <button class="hub-btn" type="button" data-panel="research">Research</button>
+      <button class="hub-btn" type="button" data-panel="publications">Publications</button>
+      <button class="hub-btn" type="button" data-panel="models">Model Library</button>
+      <button class="hub-btn" type="button" data-panel="notes">Nice Math</button>
+      <button class="hub-btn" type="button" data-panel="cv">Curriculum Vitae</button>
+    </nav>
+  </aside>
 
-  <!-- HUB SWITCHER -->
-  <nav class="hub-switcher" aria-label="Site sections">
-    <button class="hub-btn active" type="button" data-index="0" data-panel="about">About me</button>
-    <button class="hub-btn" type="button" data-index="1" data-panel="research">Selected Projects</button>
-    <button class="hub-btn" type="button" data-index="2" data-panel="models">Model Library</button>
-    <button class="hub-btn" type="button" data-index="3" data-panel="notes">Math</button>
-    <button class="hub-btn" type="button" data-index="4" data-panel="cv">Curriculum Vitae</button>
-  </nav>
-
+  <!-- ── CONTENT ── -->
   <main class="hub-stage">
+
     <section class="hub-panel active" id="panel-about">
-      <div class="empty-slot">
-        <div class="about-intro">
-          <p class="preview-copy"></p>
-          <!-- Add image source when ready. -->
-          <div class="about-photo" aria-label="Profile photo placeholder"></div>
-        </div>
-        <p class="preview-copy"></p>
-      </div>
+      <p class="preview-copy">I am a fourth-year Biomedicine student at UVic-UCC, currently working at the <a href="https://mon.uvic.cat/cbbl/" target="_blank">Computational Biochemistry and Biophysics Lab</a> on the modelling and reverse engineering of biological regulatory systems — trying to understand how networks of interacting components give rise to ordered, often oscillatory behaviour, and how that structure can be recovered from incomplete observations.</p>
+      <p class="preview-copy">My research interests lie at the intersection of dynamical systems, network science, and complex systems. I work on the modelling and analysis of biological networks, combining mechanistic modelling with data-driven methods for inference, prediction, and control. My aim is to build rigorous quantitative frameworks that connect mathematical structure with biological mechanism.</p>
+      <p class="preview-copy">I came to biology through a fascination with disease — the intricate molecular machinery underlying how organisms break down and defend themselves. That led me first to Biochemistry at the Autonomous University of Barcelona, then to a BSc in Biomedicine at the University of Vic – Central University of Catalonia. But something else had always been pulling from underneath: an attraction to abstraction, pattern, and structure. My final pre-university project was on fractals and mathematical pattern formation in natural systems — an early sign, in retrospect, of where I was headed. The tension between these two sides began to resolve during my Erasmus year at the Università degli Studi di Milano, where courses in mathematical modelling for biology, biophysics, and the mathematics behind modern AI made the direction unmistakable. I came back to UVic-UCC and began building that synthesis in practice.</p>
+      <!-- Add image source when ready. -->
+      <div class="about-photo" aria-label="Profile photo placeholder"></div>
     </section>
 
     <section class="hub-panel" id="panel-research">
-      <div class="empty-slot">
-        <p class="preview-copy">This section presents selected projects in a clear and concise format.</p>
-        <p class="preview-copy">I will add current goals, methods, and results as they are finalized.</p>
-      </div>
+      <p class="preview-copy">This section will present my research projects.</p>
+      <p class="preview-copy">I will add current goals, methods, and results as they are finalized.</p>
+    </section>
+
+    <section class="hub-panel" id="panel-publications">
+      <p class="preview-copy">No publications yet.</p>
     </section>
 
     <section class="hub-panel" id="panel-models">
-      <div class="empty-slot">
-        <p class="preview-copy">This section describes example models from different domains.</p>
-        <p class="preview-copy">Each entry will summarize the model idea, equations, computational setup, and simulation graphics.</p>
-      </div>
+      <p class="preview-copy">This section describes example models from different domains.</p>
+      <p class="preview-copy">Each entry will summarize the model idea, equations, computational setup, and simulation graphics.</p>
     </section>
 
     <section class="hub-panel" id="panel-notes">
-      <div class="empty-slot">
-        <p class="preview-copy">This section will gather concise mathematical notes and derivations.</p>
-        <p class="preview-copy">I will keep definitions, results, and references organized by topic.</p>
-      </div>
+      <p class="preview-copy">This section will gather concise mathematical notes and derivations.</p>
+      <p class="preview-copy">Definitions, results, and references organized by topic.</p>
     </section>
 
     <section class="hub-panel" id="panel-cv">
-      <div class="empty-slot">
-        <p class="subsection-title">Education</p>
-        <ul class="preview-list">
-          <li>
-            Bachelor's Degree in Biomedicine | 2022 - Present
-            <span class="cv-subline">University of Vic - Central University of Catalonia.</span>
-            <span class="cv-meta">Currently in fourth year.</span>
-          </li>
-          <li>
-            Erasmus Exchange Program | 2025 - 2026
-            <span class="cv-subline">Università degli Studi di Milano.</span>
-          </li>
-          <li>
-            Bachelor's Degree in Biochemistry | 2021 - 2022
-            <span class="cv-subline">Autonomous University of Barcelona.</span>
-            <span class="cv-meta">60 ECTS credits completed.</span>
-          </li>
-        </ul>
+      <p class="subsection-title">Education</p>
+      <ul class="preview-list">
+        <li>
+          Bachelor's Degree in Biomedicine | 2022 – Present
+          <span class="cv-subline">University of Vic – Central University of Catalonia.</span>
+          <span class="cv-meta">Currently in fourth year.</span>
+        </li>
+        <li>
+          Erasmus Exchange Program | 2025 – 2026
+          <span class="cv-subline">Università degli Studi di Milano.</span>
+        </li>
+        <li>
+          Bachelor's Degree in Biochemistry | 2021 – 2022
+          <span class="cv-subline">Autonomous University of Barcelona.</span>
+          <span class="cv-meta">60 ECTS credits completed.</span>
+        </li>
+      </ul>
 
-        <p class="subsection-title">Research Experience</p>
-        <ul class="preview-list">
-          <li>
-            Computational and Systems Biology | 2025 - Present
-            <span class="cv-subline"><a href="https://mon.uvic.cat/cbbl/" target="_blank">Computational Biochemistry and Biophysics Lab (Bi<sup>2</sup> research group)</a>, UVic-UCC.</span>
-            <span class="cv-meta">PINNs for parameter estimation and dynamics simulation in ODE-based metabolic and oscillatory models.</span>
-          </li>
-        </ul>
+      <p class="subsection-title">Research Experience</p>
+      <ul class="preview-list">
+        <li>
+          Computational and Systems Biology | 2025 – Present
+          <span class="cv-subline"><a href="https://mon.uvic.cat/cbbl/" target="_blank">Computational Biochemistry and Biophysics Lab (Bi<sup>2</sup> research group)</a>, UVic-UCC.</span>
+          <span class="cv-meta">Reverse engineering of biological dynamical systems using Physics-Informed Neural Networks (PINNs). Parameter inference and trajectory recovery for the repressilator model from noisy and partially observed time-series data.</span>
+        </li>
+      </ul>
 
-        <p class="subsection-title">Work Experience</p>
-        <ul class="preview-list">
-          <li>
-            Mathematics Private Tutor | 2024 - 2025
-          </li>
-          <li>
-            Waiter | Summer 2024
-            <span class="cv-subline">Hotel - Restaurant L'AVET.</span>
-          </li>
-          <li>
-            Laboratory Assistant | Summer 2023
-            <span class="cv-subline">Avinent Implant System.</span>
-          </li>
-        </ul>
+      <p class="subsection-title">Work Experience</p>
+      <ul class="preview-list">
+        <li>Mathematics Private Tutor | 2024 – 2025</li>
+        <li>
+          Waiter | Summer 2024
+          <span class="cv-subline">Hotel – Restaurant L'AVET.</span>
+        </li>
+        <li>
+          Laboratory Assistant | Summer 2023
+          <span class="cv-subline">Avinent Implant System.</span>
+        </li>
+      </ul>
 
-        <p class="subsection-title">Technical Skills</p>
-        <ul class="preview-list">
-          <li>Programming languages: Python, R.</li>
-          <li>Methods: mathematical modeling, numerical simulation, applied neural networks, data analysis.</li>
-          <li>Tools: NumPy, SciPy, pandas, Matplotlib, DeepXDE, DESeq2, Git.</li>
-        </ul>
+      <p class="subsection-title">Technical Skills</p>
+      <ul class="preview-list">
+        <li>Programming: Python, R.</li>
+        <li>Scientific computing &amp; machine learning: NumPy, SciPy, DeepXDE, TensorFlow.</li>
+        <li>Developer tools: Git, LaTeX.</li>
+      </ul>
 
-        <p class="subsection-title">Transferable Skills</p>
-        <ul class="preview-list">
-          <li>Structured approach to complex problem solving.</li>
-          <li>Clear communication of technical results.</li>
-          <li>Fast learner with strong autonomy in new technical environments.</li>
-        </ul>
+      <p class="subsection-title">Transferable Skills</p>
+      <ul class="preview-list">
+        <li>Structured approach to complex problem solving.</li>
+        <li>Clear communication of scientific results.</li>
+        <li>Quick adaptation to new research frameworks and technical environments.</li>
+      </ul>
 
-        <p class="subsection-title">Languages</p>
-        <ul class="preview-list">
-          <li>Catalan and Spanish (native).</li>
-          <li>Fluent in English (B2 certified).</li>
-          <li>Understanding of Italian.</li>
-        </ul>
-      </div>
+      <p class="subsection-title">Languages</p>
+      <ul class="preview-list">
+        <li>Catalan and Spanish (native).</li>
+        <li>Fluent in English (B2 certified).</li>
+        <li>Basic understanding of Italian.</li>
+      </ul>
     </section>
+
   </main>
+
 
 </div>
 
 <script>
-  const hubSwitcher = document.querySelector('.hub-switcher');
   const hubButtons = document.querySelectorAll('.hub-btn');
-  const hubPanels = document.querySelectorAll('.hub-panel');
-
-  function updateHubIndicator(activeButton) {
-    if (!hubSwitcher || !activeButton) return;
-    const left = activeButton.offsetLeft;
-    const width = activeButton.offsetWidth;
-    hubSwitcher.style.setProperty('--indicator-left', left + 'px');
-    hubSwitcher.style.setProperty('--indicator-width', width + 'px');
-  }
+  const hubPanels  = document.querySelectorAll('.hub-panel');
 
   hubButtons.forEach((btn) => {
     btn.addEventListener('click', () => {
       const target = btn.dataset.panel;
       hubButtons.forEach((b) => b.classList.remove('active'));
-      hubPanels.forEach((p) => p.classList.remove('active'));
+      hubPanels.forEach((p)  => p.classList.remove('active'));
       btn.classList.add('active');
       document.getElementById('panel-' + target).classList.add('active');
-      updateHubIndicator(btn);
     });
-  });
-
-  const initiallyActive = document.querySelector('.hub-btn.active');
-  updateHubIndicator(initiallyActive);
-  window.addEventListener('resize', () => {
-    updateHubIndicator(document.querySelector('.hub-btn.active'));
   });
 </script>
 

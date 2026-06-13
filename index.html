@@ -405,28 +405,28 @@
 
     /* ── MOBILE ── */
     @media (max-width: 700px) {
+      html, body { height: 100%; overflow: hidden; }
+
       .page {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        overflow: hidden;
       }
 
       .sidebar {
         position: static;
         height: auto;
-        padding: 1.8rem 1.5rem 0;
-        border-left: none;
+        flex-shrink: 0;
+        padding: 1.5rem 1.5rem 0;
+        border-right: none;
         border-bottom: 1px solid var(--rule);
+        overflow: visible;
       }
 
-      .sidebar-name {
-        position: sticky;
-        top: 0;
-        background: var(--white);
-        z-index: 100;
-        padding-top: 1.2rem;
-        padding-bottom: 0.8rem;
-        border-bottom: 1px solid var(--rule);
-        margin-bottom: 0.8rem;
-      }
+      .sidebar::after { display: none; }
+
+      .sidebar-name { position: static; }
 
       .sidebar-name h1 { font-size: 1.25rem; }
 
@@ -465,16 +465,14 @@
       }
 
       .hub-stage {
-        padding: 2.2rem 1.5rem 3.5rem;
+        flex: 1;
+        height: 0;
+        overflow-y: auto;
+        padding: 2rem 1.5rem 2.5rem;
         max-width: none;
       }
 
-      .about-intro {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-      }
-
-      .about-photo { width: 160px; height: 107px; }
+      .about-photo { width: 220px; height: 147px; }
 
       .sim-gallery { grid-template-columns: 1fr; }
     }

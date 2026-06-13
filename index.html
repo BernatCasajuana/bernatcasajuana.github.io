@@ -149,7 +149,7 @@
 
     /* ── CONTENT ── */
     .hub-stage {
-      padding: 3.8rem 5.5rem 6rem 5rem;
+      padding: 4.8rem 5.5rem 6rem 5rem;
     }
 
     /* ── PANELS ── */
@@ -251,11 +251,26 @@
     }
 
     .cv-subline a {
-      color: inherit;
+      color: var(--accent);
       text-decoration: none;
     }
 
     .cv-subline a:hover { text-decoration: underline; }
+
+    #panel-cv .preview-list li a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    #panel-cv .preview-list li a:hover { text-decoration: underline; }
+
+    .cv-body {
+      display: block;
+      margin-top: 0.12rem;
+      font: inherit;
+      color: var(--mid);
+    }
 
     .cv-meta {
       display: block;
@@ -545,25 +560,22 @@
         <li>
           Bachelor's Degree in Biomedicine | 2022 – Present
           <span class="cv-subline">University of Vic – Central University of Catalonia.</span>
-          <span class="cv-meta">Currently in fourth year.</span>
         </li>
         <li>
-          Erasmus Exchange Program | 2025 – 2026
+          Erasmus Exchange | 2025 – 2026
           <span class="cv-subline">Università degli Studi di Milano.</span>
         </li>
         <li>
-          Bachelor's Degree in Biochemistry | 2021 – 2022
+          Bachelor's Degree in Biochemistry (60 ECTS) | 2021 – 2022
           <span class="cv-subline">Autonomous University of Barcelona.</span>
-          <span class="cv-meta">60 ECTS credits completed.</span>
         </li>
       </ul>
 
       <p class="subsection-title">Research Experience</p>
       <ul class="preview-list">
         <li>
-          Computational and Systems Biology | 2025 – Present
-          <span class="cv-subline"><a href="https://mon.uvic.cat/cbbl/" target="_blank">Computational Biochemistry and Biophysics Lab (Bi<sup>2</sup> research group)</a>, UVic-UCC.</span>
-          <span class="cv-meta">Reverse engineering of biological dynamical systems using Physics-Informed Neural Networks (PINNs). Parameter inference and trajectory recovery for the repressilator model from noisy and partially observed time-series data.</span>
+          <a href="https://mon.uvic.cat/cbbl/" target="_blank">Computational Biochemistry and Biophysics Lab, <strong>UVic-UCC</strong></a> | 2025 – Present
+          <span class="cv-body">Reverse engineering of biological dynamical systems using Physics-Informed Neural Networks (PINNs).</span>
         </li>
       </ul>
 
@@ -582,23 +594,13 @@
 
       <p class="subsection-title">Technical Skills</p>
       <ul class="preview-list">
-        <li>Programming: Python, R.</li>
-        <li>Scientific computing &amp; machine learning: NumPy, SciPy, DeepXDE, TensorFlow.</li>
-        <li>Developer tools: Git, LaTeX.</li>
-      </ul>
-
-      <p class="subsection-title">Transferable Skills</p>
-      <ul class="preview-list">
-        <li>Structured approach to complex problem solving.</li>
-        <li>Clear communication of scientific results.</li>
-        <li>Quick adaptation to new research frameworks and technical environments.</li>
+        <li>Programming Languages: Python, R.</li>
+        <li>Libraries &amp; Tools: NumPy, SciPy, Matplotlib, TensorFlow, DeepXDE, Git, LaTeX.</li>
       </ul>
 
       <p class="subsection-title">Languages</p>
       <ul class="preview-list">
-        <li>Catalan and Spanish (native).</li>
-        <li>Fluent in English (B2 certified).</li>
-        <li>Basic understanding of Italian.</li>
+        <li>Catalan and Spanish (native), fluent in English (B2), understanding of Italian</li>
       </ul>
     </section>
 

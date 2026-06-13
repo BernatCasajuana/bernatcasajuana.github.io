@@ -52,7 +52,7 @@
       scrollbar-width: none;
       display: flex;
       flex-direction: column;
-      padding: 3.8rem 2.5rem 3.8rem 3rem;
+      padding: 2rem 2.5rem 3.8rem 3rem;
     }
 
     .sidebar::after {
@@ -420,10 +420,15 @@
       .sidebar-name h1 { font-size: 1.25rem; }
 
       .sidebar-links {
-        flex-direction: row;
-        flex-wrap: wrap;
-        gap: 0.4rem 1.1rem;
-        margin-bottom: 0.8rem;
+        flex-direction: column;
+        gap: 0.3rem;
+        margin-bottom: 1rem;
+      }
+
+      .sidebar-links span {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: clip;
       }
 
       .hub-switcher {

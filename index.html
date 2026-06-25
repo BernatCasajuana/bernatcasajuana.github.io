@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bernat Casajuana</title>
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"/>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -18,7 +21,7 @@
       --serif:     'Times New Roman', Times, serif;
       --ui:        'IBM Plex Sans', 'Segoe UI', sans-serif;
       --mono:      'IBM Plex Mono', 'SFMono-Regular', Menlo, monospace;
-      --sidebar-w: 395px;
+      --sidebar-w: 355px;
     }
 
     html { font-size: 16px; }
@@ -357,7 +360,7 @@
     .proj-status.active { color: #2a7a2a; }
     .proj-status.wip    { color: #8a6000; }
 
-    .proj-desc { font-size: 0.95rem; color: var(--mid); margin-bottom: 0.7rem; }
+    .proj-desc { font-size: 0.95rem; color: var(--mid); margin-bottom: 0.7rem; text-align: justify; }
 
     .proj-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
 
@@ -496,6 +499,8 @@
 
       .sim-gallery { grid-template-columns: 1fr; }
     }
+
+    .katex { font-size: 1em !important; }
   </style>
 </head>
 <body>
@@ -506,13 +511,13 @@
   <aside class="sidebar">
     <div class="sidebar-name">
       <h1>Bernat Casajuana</h1>
-      <p class="sidebar-desc">Applied Mathematics and Scientific Machine Learning for Complex Biological Systems.</p>
+      <p class="sidebar-desc">Applied Mathematics for Complex Biological Systems.</p>
     </div>
     <div class="sidebar-links">
       <span>Email: <a href="mailto:casajuana.bernat@gmail.com">casajuana.bernat@gmail.com</a></span>
       <!-- <span>LinkedIn: <a href="https://www.linkedin.com/in/bernat-casajuana-suarez-0938643a5/" target="_blank">Bernat Casajuana Suarez</a></span> -->
       <span>Code: <a href="https://github.com/BernatCasajuana" target="_blank">github.com/BernatCasajuana</a></span>
-      <span>Full CV: <a href="cv.pdf" target="_blank" rel="noopener">cv.pdf</a></span>
+      <span>Full CV: <a href="cv/cv.pdf" target="_blank" rel="noopener">curriculum.pdf</a></span>
     </div>
     <nav class="hub-switcher" aria-label="Site sections">
       <button class="hub-btn active" type="button" data-panel="about">About me</button>
@@ -536,7 +541,32 @@
     </section>
 
     <section class="hub-panel" id="panel-research">
-      <p class="preview-copy">This section will present my research projects. I will add current goals, methods, and results as they are finalized.</p>
+
+      <div class="proj-item" style="border-top: 1px solid var(--rule);">
+        <div class="proj-header">
+          <span class="proj-title">Physics-Informed Neural Networks for Parameter Recovery in the Repressilator, 2026</span>
+        </div>
+
+        <p class="proj-desc" style="margin-top: 0.8rem;">
+          Inferring parameters in mechanistic models from time-series is a central challenge in systems biology, and especially hard in oscillatory networks: the objective is non-convex and classical fitting methods are often insufficient. The repressilator, a synthetic three-gene oscillator in which proteins repress one another, is a perfect toy model to study this problem. Governed by the system of ordinary differential equations (ODEs):
+        </p>
+        <div style="margin: 1.2rem 0;">$$\frac{dx_i}{dt} = \frac{\beta}{1 + x_{i-1}^{\,n}} - x_i, \quad i = 1,2,3$$</div>
+        <p class="proj-desc">
+          our objective is to recover the production rate $\beta$ and Hill coefficient $n$ from sparse, incomplete, and noisy data, mimicking real experimental observations. Physics-Informed Neural Networks (PINNs) offer a natural approach: embedding the governing equations into the training loss so that network weights and unknown parameters are jointly optimised, minimising a weighted sum of three terms:
+        </p>
+        <div style="text-align: center; margin: 1.2rem 0;">$$\mathcal{L} = \lambda_f \mathcal{L}_{\text{eq}} + \lambda_0 \mathcal{L}_{\text{IC}} + \lambda_y \mathcal{L}_{\text{obs}}$$</div>
+        <p class="proj-desc">
+          where $\mathcal{L}_{\text{eq}}$ penalises ODE residuals, $\mathcal{L}_{\text{IC}}$ enforces initial conditions, and $\mathcal{L}_{\text{obs}}$ fits the data.
+        </p>
+        <p class="proj-desc" style="margin-top: 1.2rem;">
+          Our results demonstrate that the PINN recovers $\beta$ and $n$ accurately across noise levels, different degrees of observability, various initial parameter guesses and within stable and oscillatory dynamical regimes, matching or outperforming a classical L-BFGS-B baseline. The physics residual $\mathcal{L}_{\text{eq}}$ dominates early training and decays as the trajectory locks onto the specific attractor, regularising the optimiser toward the correct solution even from distant starting points.
+        </p>
+        <img src="research/pinns-repressilator/exp7_convergence.png" alt="Parameter and loss convergence" style="display: block; width: 72%; margin: 1.2rem auto 0;"/>
+        <p class="proj-desc" style="margin-top: 1.2rem;">
+          We therefore conclude that PINNs are a promising tool for reverse engineering in oscillatory systems, providing an empirical analysis of the method's performance and limitations.
+
+      </div>
+
     </section>
 
     <section class="hub-panel" id="panel-publications">

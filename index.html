@@ -422,77 +422,87 @@
     }
 
     /* ── MOBILE ── */
-    @media (max-width: 700px) {
-      html, body { height: 100%; overflow: hidden; }
+    .mobile-menu-btn { display: none; }
 
+    .sidebar-name-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 700px) {
       .page {
         display: flex;
         flex-direction: column;
-        height: 100%;
-        overflow: hidden;
+        min-height: 100vh;
       }
 
       .sidebar {
-        position: static;
+        position: sticky;
+        top: 0;
         height: auto;
-        flex-shrink: 0;
-        padding: 0.7rem 1.5rem 0;
-        border-right: none;
+        padding: 1rem 1.5rem 0;
+        background: var(--white);
+        z-index: 10;
         border-bottom: 1px solid var(--rule);
         overflow: visible;
       }
 
       .sidebar::after { display: none; }
 
-      .sidebar-name {
-        position: static;
-        margin-bottom: 0.6rem;
-      }
+      .sidebar-name { margin-bottom: 0.4rem; }
 
-      .sidebar-name h1 { font-size: 1.25rem; }
+      .sidebar-name h1 { font-size: 1.2rem; }
+
+      .mobile-menu-btn {
+        display: block;
+        font-family: var(--serif);
+        font-size: 1.2rem;
+        color: var(--light);
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+        line-height: 1;
+        letter-spacing: 0.05em;
+      }
 
       .sidebar-links {
-        flex-direction: column;
-        gap: 0.1rem;
-        margin-bottom: 0.5rem;
-        padding-top: 0.5rem;
+        display: none;
+        padding-top: 0.6rem;
+        margin-bottom: 0.6rem;
+        border-top: none;
       }
 
-      .sidebar-links span {
-        white-space: normal;
-        overflow: visible;
-        text-overflow: clip;
-      }
+      .sidebar-links.mobile-open { display: flex; }
 
       .hub-switcher {
         flex-direction: row;
-        gap: 1rem;
+        gap: 1.2rem;
         overflow-x: auto;
         white-space: nowrap;
-        padding: 0.45rem 0;
+        padding: 0.5rem 0;
         border-top: 1px solid var(--rule);
         scrollbar-width: none;
       }
+
+      .hub-switcher::-webkit-scrollbar { display: none; }
 
       .hub-btn {
         border-left: none;
         border-bottom: 1.5px solid transparent;
         padding: 0.2rem 0;
-        font-size: 0.84rem;
+        font-size: 0.9rem;
       }
 
       .hub-btn.active {
-        border-bottom-color: transparent;
         border-left-color: transparent;
-        font-weight: 700;
+        border-bottom-color: var(--ink);
+        font-weight: 600;
       }
 
       .hub-stage {
-        flex: 1;
-        height: 0;
-        overflow-y: auto;
-        padding: 1rem 1.5rem 2.5rem;
-        max-width: none;
+        padding: 1.5rem 1.5rem 3rem;
       }
 
       .about-photo { width: 220px; height: 147px; }
@@ -510,7 +520,10 @@
   <!-- ── SIDEBAR (left) ── -->
   <aside class="sidebar">
     <div class="sidebar-name">
-      <h1>Bernat Casajuana</h1>
+      <div class="sidebar-name-row">
+        <h1>Bernat Casajuana</h1>
+        <button class="mobile-menu-btn" aria-label="Toggle links" onclick="document.querySelector('.sidebar-links').classList.toggle('mobile-open')">···</button>
+      </div>
       <p class="sidebar-desc">Applied Mathematics and Scientific Machine Learning for Complex Biological Systems.</p>
     </div>
     <div class="sidebar-links">
@@ -535,7 +548,7 @@
     <section class="hub-panel active" id="panel-about">
       <p class="preview-copy">I am a Biomedicine student at the University of Vic – Central University of Catalonia, conducting research on gene regulatory networks in the <a href="https://mon.uvic.cat/cbbl/" target="_blank">Computational Biochemistry and Biophysics Lab</a>, with a particular interest in complex systems and their underlying mathematical principles.</p>
       <p class="preview-copy">I focus on understanding how collective behavior emerges from interacting units, leading to phenomena such as synchronization, chaos, and critical transitions. My research combines dynamical systems theory and network science, using physics-informed and structure-aware machine learning to develop methods for system identification, model discovery, and control. Although my current work is centered on biological mechanisms with potential biomedical applications, I aim to develop general mathematical and computational frameworks for understanding these concepts across disciplines.</p>
-      <p class="preview-copy">While my academic background is in Biochemistry and Biomedicine, over the past three years I found myself increasingly drawn to the mathematical language through which nature can be described. This curiosity was already evident in an early project on fractal geometry and in a long-standing fascination with fundamental ideas in physics. An Erasmus year at the University of Milan, where I studied mathematical modelling, biophysics, and artificial intelligence, further strengthened this perspective. Today, these interests naturally converge in my research.</p>
+      <p class="preview-copy">While my academic background is in Biochemistry and Biomedicine, over the past three years I found myself increasingly drawn to the mathematical language through which nature can be described. This curiosity was already evident in an early highschool project on fractal geometry and in a long-standing fascination with fundamental ideas in physics. An Erasmus year at the University of Milan, where I studied mathematical modelling, biophysics, and artificial intelligence, further strengthened this perspective. Today, these interests naturally converge in my research.</p>
       <p class="preview-copy">Outside of science, I enjoy weightlifting, outdoor sports like hiking and football, and more reflective activities such as cinema and reading.</p>
       <!-- Add image source when ready. -->
       <div class="about-photo" aria-label="Profile photo placeholder"></div>

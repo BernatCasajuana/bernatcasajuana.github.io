@@ -73,7 +73,7 @@
     .sidebar::-webkit-scrollbar { display: none; }
 
     .sidebar-name {
-      margin-bottom: 1.8rem;
+      margin-bottom: 0.65rem;
     }
 
     .sidebar-name h1 {
@@ -98,7 +98,7 @@
       flex-direction: column;
       gap: 0.32rem;
       padding-top: 1.4rem;
-      margin-bottom: 2.8rem;
+      margin-bottom: 0.65rem;
       border-top: 1px solid var(--rule);
     }
 
@@ -127,6 +127,8 @@
       display: flex;
       flex-direction: column;
       gap: 0;
+      border-top: 1px solid var(--rule);
+      padding-top: 1.4rem;
     }
 
     .hub-btn {
@@ -522,7 +524,7 @@
     <div class="sidebar-name">
       <div class="sidebar-name-row">
         <h1>Bernat Casajuana</h1>
-        <button class="mobile-menu-btn" aria-label="Toggle links" onclick="document.querySelector('.sidebar-links').classList.toggle('mobile-open')">···</button>
+        <button class="mobile-menu-btn" aria-label="Toggle links" onclick="document.querySelector('.sidebar-links').classList.toggle('mobile-open')">Info</button>
       </div>
       <p class="sidebar-desc">Applied Mathematics and Scientific Machine Learning for Complex Biological Systems.</p>
     </div>

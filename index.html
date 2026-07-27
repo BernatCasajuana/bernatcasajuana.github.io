@@ -502,6 +502,8 @@
       justify-content: space-between;
     }
 
+    .mobile-break { display: none; }
+
     @media (max-width: 700px) {
       .page {
         display: flex;
@@ -552,15 +554,20 @@
 
       .hub-switcher {
         flex-direction: row;
+        justify-content: center;
         gap: 1.2rem;
         overflow-x: auto;
         white-space: nowrap;
-        padding: 0.5rem 0;
+        padding: 0.9rem 0;
         margin-top: 0.5rem;
         border-top: 1px solid var(--rule);
         border-bottom: 1px solid var(--rule);
         scrollbar-width: none;
       }
+
+      .mobile-break { display: inline; }
+
+      #panel-cv > .subsection-title:first-child { margin-top: 0; }
 
       .sidebar-links.mobile-open + .hub-switcher { margin-top: 0; }
 
@@ -609,7 +616,7 @@
         <h1>Bernat Casajuana</h1>
         <button class="mobile-menu-btn" aria-label="Toggle links" onclick="document.querySelector('.sidebar-links').classList.toggle('mobile-open')">Info</button>
       </div>
-      <p class="sidebar-desc">Applied Mathematics and Scientific Machine Learning for Complex Biological Systems.</p>
+      <p class="sidebar-desc">Applied Mathematics and Scientific Machine<br class="mobile-break"> Learning for Complex Biological Systems.</p>
     </div>
     <div class="sidebar-links">
       <span>Email: <a href="mailto:casajuana.bernat@gmail.com">casajuana.bernat@gmail.com</a></span>
